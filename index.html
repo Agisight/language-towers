@@ -53,24 +53,81 @@
   .bottom-note{margin-top:14px}
   .heading{margin-bottom:26px}
 }
+
+/* Public-facing, read-only design. The tower matrix and SVG rendering are unchanged. */
+:root{color-scheme:light;--app-bg:#f6f8fb;--text:#182334;--line:#e4e9f0}
+html,body{background:var(--app-bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.site-bar{position:relative;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;padding:14px clamp(20px,3.2vw,54px);background:#fff;border-bottom:1px solid #e6ebf1;box-shadow:0 1px 8px #172c4706;z-index:2}
+.brand{display:inline-flex;align-items:center;gap:11px;color:#192638;text-decoration:none;font-size:16px;font-weight:750;letter-spacing:-.45px;white-space:nowrap}
+.brand-mark{height:26px;width:25px;display:flex;align-items:end;gap:3px}
+.brand-mark i{display:block;width:6px;border-radius:3px 3px 2px 2px;background:linear-gradient(#8bcbb5,#237e72)}
+.brand-mark i:nth-child(1){height:12px}.brand-mark i:nth-child(2){height:20px}.brand-mark i:nth-child(3){height:26px}
+.site-bar .toolbar{padding:0;display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:12px;background:transparent;border:0}
+.site-bar .toolbar-field{color:#6b788a;font-weight:550;font-size:12px}
+.site-bar .control-select select{border:1px solid #dfe6ee;background:#fff;border-radius:10px;box-shadow:none;height:39px;font-size:12px;color:#263447}
+.site-bar .provider-select select{width:230px}.site-bar .locale-select select{width:110px}
+.nav-divider{height:24px;width:1px;background:#e3e8ef;margin:0 2px}
+.site-bar .nav-link{font:600 12px -apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',sans-serif;color:#455468;border:0;background:transparent;min-height:39px;padding:0 10px;text-decoration:none;cursor:pointer;white-space:nowrap}
+.site-bar .nav-link:hover{background:#f4f7fa;color:#1c3149}
+.contribute-link{display:inline-flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap;border-radius:10px;background:#1f6ac2;color:#fff;text-decoration:none;font-size:12px;font-weight:680;padding:0 15px;min-height:39px;box-shadow:0 3px 9px #2467ac22;transition:background .15s,transform .15s}
+.contribute-link:hover{background:#17589f;transform:translateY(-1px)}
+.stage-wrap{padding:26px clamp(16px,2vw,34px) 34px}
+.stage{box-shadow:0 12px 38px #1429430b;border-color:#e9edf2}
+.tank:hover svg{filter:brightness(1.08);transform:translateY(-1px)}
+.tank svg{transition:filter .17s ease,transform .17s ease}
+.details-dialog{width:min(540px,calc(100vw - 32px));max-height:min(88vh,850px);overflow:auto;border:1px solid #e1e7ee;border-radius:22px;padding:28px 30px 26px;background:#fff;color:#192638;box-shadow:0 32px 100px #11223939}
+.details-dialog::backdrop{background:#14223976;backdrop-filter:blur(3px)}
+.detail-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:9px}
+.detail-kicker{font-size:11px;font-weight:720;text-transform:uppercase;letter-spacing:1px;color:#758399}
+.details-dialog .close{display:grid;place-items:center;float:none;flex:0 0 auto;width:34px;height:34px;border-radius:9px;border:1px solid #e6ebf0;background:#f8fafc;color:#6e7b8a;cursor:pointer}
+.details-dialog .close:hover{background:#eef2f7;color:#253344}
+.details-dialog h2{font-size:26px;line-height:1.15;letter-spacing:-.7px;font-weight:760;margin:0 0 23px;color:#182437}
+.detail-score{display:flex;align-items:baseline;gap:13px;margin:0 0 14px}
+.detail-score strong{font-size:42px;line-height:1;font-weight:780;letter-spacing:-2px;font-variant-numeric:tabular-nums}
+.detail-score span{font-size:12px;color:#788598}
+.detail-meter{height:9px;background:#ecf0f4;border-radius:100px;overflow:hidden}
+.detail-meter span{display:block;height:100%;width:0;background:linear-gradient(90deg,#3a967a,#177353);border-radius:100px;transition:width .23s}
+.detail-status{font-size:12px;color:#748398;margin:12px 0 3px;line-height:1.5}
+.detail-divider{height:1px;background:#e9edf2;margin:23px 0 22px}
+.details-dialog h3{font-size:14px;letter-spacing:-.12px;margin:0 0 13px;font-weight:700;color:#25364c}
+.detail-rows{display:grid;gap:13px}
+.detail-row{display:grid;gap:6px;border:1px solid #edf1f5;border-radius:12px;padding:12px 14px;background:#fbfcfe}
+.detail-row-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px;font-size:12px;color:#45536a}
+.detail-row-top strong{font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;color:#24344a;white-space:nowrap}
+.detail-source{color:#7a8798;font-size:11px;line-height:1.5}
+.detail-note{font-size:12px;line-height:1.65;color:#718095;margin:16px 0 22px;background:#f5f7fa;padding:13px 15px;border-radius:11px}
+.detail-action{display:flex;justify-content:center;align-items:center;gap:8px;width:100%;background:#1f6ac2;color:white;border-radius:11px;padding:13px 16px;font-size:13px;font-weight:680;text-decoration:none}
+.detail-action:hover{background:#17589f}
+@media(max-width:1000px){.site-bar{align-items:flex-start}.site-bar .toolbar{justify-content:flex-start}.nav-divider{display:none}}
+@media(max-width:590px){.site-bar{padding:16px}.brand{width:100%}.site-bar .toolbar{width:100%;gap:8px}.site-bar .toolbar-field{flex:1 1 140px;display:grid;gap:5px}.site-bar .control-select select,.site-bar .provider-select select,.site-bar .locale-select select{width:100%}.method-link,.print-link{flex:1 1 auto}.contribute-link{flex:1 1 auto}.details-dialog{padding:23px 20px}.details-dialog h2{font-size:23px}}
+@media print{.site-bar,.details-dialog{display:none!important}}
 </style>
 </head>
 <body>
-<div class="toolbar">
-  <h1>Language Towers</h1>
-  <label class="toolbar-field"><span data-i18n="interface">Interface</span><span class="control-select locale-select"><select id="locale" aria-label="Interface language"><option value="en">English</option><option value="ru">Русский</option></select><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 7 5 5 5-5"/></svg></span></label>
-  <label class="toolbar-field provider-pick"><span data-i18n="platform">Platform</span><span class="control-select provider-select"><select id="platform" aria-label="Platform"></select><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 7 5 5 5-5"/></svg></span></label>
-  <a class="nav-link" href="info.html" data-i18n="about">About / Methodology</a>
-  <a class="nav-link" href="contribute.html" data-i18n="contribute">Contribute</a>
-  <button id="showEditor" data-i18n="editJson">Edit JSON</button>
-  <button id="downloadJson" data-i18n="download">Download JSON</button>
-  <label class="file-btn"><span data-i18n="upload">Upload JSON</span> <input type="file" accept=".json,application/json" id="uploadJson"></label>
-  <button id="print" data-i18n="print">Print / PDF</button>
-  <span class="spacer"></span><button class="primary" id="hint" data-i18n="hint">Click a floor → view / edit</button>
-</div>
-<div class="editor" id="editor"><h2 data-i18n="modelTitle">Model data (JSON)</h2><p data-i18n="modelHelp">Add languages to languages and categories to groups. Provider estimates live in platformScores, and individual technology estimates in technologyScores. Overall is a read-only OR/MAX calculation, not a separate stored score. Unknown is null, never 0. Edit a provider or the JSON; this HTML works offline.</p><textarea spellcheck="false" id="jsonArea"></textarea><div id="jsonError" class="edit-error"></div><div class="edit-actions"><button class="primary" id="applyJson" data-i18n="apply">Apply data</button><button id="resetData" data-i18n="reset">Restore example</button></div></div>
+<header class="site-bar">
+  <a class="brand" href="index.html" aria-label="Language Towers home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>Language Towers</span></a>
+  <div class="toolbar">
+    <label class="toolbar-field"><span data-i18n="platform">Platform</span><span class="control-select provider-select"><select id="platform" aria-label="Platform"></select><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 7 5 5 5-5"/></svg></span></label>
+    <label class="toolbar-field"><span data-i18n="interface">Interface</span><span class="control-select locale-select"><select id="locale" aria-label="Interface language"><option value="en">English</option><option value="ru">Русский</option></select><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 7 5 5 5-5"/></svg></span></label>
+    <span class="nav-divider" aria-hidden="true"></span>
+    <a class="nav-link method-link" href="info.html" data-i18n="about">Methodology</a>
+    <button class="nav-link print-link" id="print" type="button" data-i18n="print">Print / PDF</button>
+    <a class="contribute-link" href="contribute.html"><span data-i18n="contribute">Contribute</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+  </div>
+</header>
 <div class="stage-wrap"><main class="stage" id="stage"><h2 class="heading" id="title"></h2><p class="provider-detail" id="providerDetail"></p><div class="matrix" id="matrix"></div><div class="bottom-note" id="note"></div></main></div>
-<dialog class="dialog" id="dialog"><button class="close" id="closeDialog" aria-label="Close" data-i18n-aria="close">×</button><h2 id="dialogTitle"></h2><label for="score" data-i18n="floorScore">Support estimate (0–100%)</label><div class="ed-row"><input id="score" type="number" min="0" max="100" step="1"><span>%</span></div><input id="scoreRange" type="range" min="0" max="100" step="1"><p style="color:#69778b;font-size:12px" data-i18n="scoreHelp">If the value is unknown, choose “Not evaluated”. Liquid height and color reflect the score.</p><p id="computedDetails" hidden style="color:#536073;font-size:13px;line-height:1.5"></p><div class="edit-actions"><button id="unknown" data-i18n="unknown">Not evaluated</button><button class="primary" id="saveScore" data-i18n="save">Save</button></div></dialog>
+<dialog class="dialog details-dialog" id="dialog" aria-labelledby="dialogTitle">
+ <div class="detail-head"><div class="detail-kicker" id="dialogKicker"></div><button class="close" id="closeDialog" aria-label="Close" data-i18n-aria="close" type="button"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+ <h2 id="dialogTitle"></h2>
+ <div class="detail-score"><strong id="dialogScore">—</strong><span id="dialogScoreCaption"></span></div>
+ <div class="detail-meter" aria-hidden="true"><span id="dialogMeter"></span></div>
+ <div class="detail-status" id="dialogStatus"></div>
+ <div class="detail-divider"></div>
+ <h3 id="detailSectionTitle"></h3>
+ <div id="detailRows" class="detail-rows"></div>
+ <p id="detailNote" class="detail-note"></p>
+ <a class="detail-action" id="suggestLink" href="contribute.html"><span data-i18n="suggest">Suggest an update</span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</dialog>
 <script id="initial-data" type="application/json">{
   "version": "3.0",
   "title": {
@@ -395,7 +452,8 @@
           "keyboard": 100
         }
       },
-      "technologyScores": {}
+      "technologyScores": {},
+      "evidence": {}
     },
     {
       "id": "ru",
@@ -415,7 +473,8 @@
           "keyboard": 100
         }
       },
-      "technologyScores": {}
+      "technologyScores": {},
+      "evidence": {}
     },
     {
       "id": "sah",
@@ -435,7 +494,8 @@
           "keyboard": 100
         }
       },
-      "technologyScores": {}
+      "technologyScores": {},
+      "evidence": {}
     },
     {
       "id": "tyv",
@@ -455,7 +515,8 @@
           "keyboard": 100
         }
       },
-      "technologyScores": {}
+      "technologyScores": {},
+      "evidence": {}
     },
     {
       "id": "uz",
@@ -475,7 +536,8 @@
           "keyboard": 100
         }
       },
-      "technologyScores": {}
+      "technologyScores": {},
+      "evidence": {}
     },
     {
       "id": "kk",
@@ -495,7 +557,8 @@
           "keyboard": 100
         }
       },
-      "technologyScores": {}
+      "technologyScores": {},
+      "evidence": {}
     },
     {
       "id": "mn",
@@ -515,7 +578,8 @@
           "keyboard": 100
         }
       },
-      "technologyScores": {}
+      "technologyScores": {},
+      "evidence": {}
     },
     {
       "id": "tt",
@@ -535,7 +599,8 @@
           "keyboard": 0
         }
       },
-      "technologyScores": {}
+      "technologyScores": {},
+      "evidence": {}
     },
     {
       "id": "ba",
@@ -555,7 +620,8 @@
           "keyboard": 0
         }
       },
-      "technologyScores": {}
+      "technologyScores": {},
+      "evidence": {}
     },
     {
       "id": "more",
@@ -575,21 +641,24 @@
           "keyboard": null
         }
       },
-      "technologyScores": {}
+      "technologyScores": {},
+      "evidence": {}
     }
   ]
 }</script>
 <script>
 (()=>{'use strict';
 let db=JSON.parse(document.getElementById('initial-data').textContent);
-const original=structuredClone(db);
+
 const $=id=>document.getElementById(id);
-let selection=null;
+
 const translations={
- en:{contribute:'Contribute',about:'About & methodology',overallReadOnly:'Overall is calculated automatically. Switch to a provider to edit its data.',overallDetails:'Known sources',overallIncomplete:'Partial evidence',overallUnknown:'No evaluated sources',interface:'Interface',platform:'Platform',language:'Language',editJson:'Edit JSON',download:'Download JSON',upload:'Upload JSON',print:'Print / PDF',hint:'Click a floor → view / edit',modelTitle:'Model data (JSON)',modelHelp:'Add languages to languages and categories to groups. Provider estimates live in platformScores, and individual technology estimates in technologyScores. Overall is a read-only OR/MAX calculation, not a separate stored score. Unknown is null, never 0. Edit a provider or the JSON; this HTML works offline.',apply:'Apply data',reset:'Restore example',close:'Close',floorScore:'Support estimate (0–100%)',scoreHelp:'If the value is unknown, choose “Not evaluated”. Liquid height and color reflect the score.',unknown:'Not evaluated',save:'Save',badShape:'Invalid JSON: languages and groups arrays are required.',badLanguage:'Every language needs id, name, and platformScores.',notRated:'Not evaluated'},
- ru:{contribute:'Добавить язык',about:'О проекте и методике',overallReadOnly:'Режим «Все платформы» рассчитывается автоматически. Выберите поставщика, чтобы изменить данные.',overallDetails:'Известные источники',overallIncomplete:'Неполные данные',overallUnknown:'Нет оценённых источников',interface:'Интерфейс',platform:'Платформа',language:'Язык',editJson:'Редактировать JSON',download:'Скачать JSON',upload:'Загрузить JSON',print:'Печать / PDF',hint:'Нажми на этаж → подробности',modelTitle:'Данные модели (JSON)',modelHelp:'Добавляй языки в languages, категории — в groups. Оценки поставщиков находятся в platformScores, а подтехнологий — в technologyScores. «Все платформы» вычисляется автоматически по ИЛИ/MAX и не хранится как отдельная оценка. Неизвестное значение — null, а не 0. HTML работает офлайн.',apply:'Применить данные',reset:'Вернуть пример',close:'Закрыть',floorScore:'Оценка поддержки (0–100%)',scoreHelp:'Если оценка неизвестна, нажми «Не оценено». Цвет и высота жидкости зависят от процента заполнения.',unknown:'Не оценено',save:'Сохранить',badShape:'Ошибка JSON: нужны массивы languages и groups.',badLanguage:'Для каждого языка нужны id, name и platformScores.',notRated:'Нет оценки'}
+ en:{contribute:'Contribute',about:'About & methodology',overallReadOnly:'Overall is calculated automatically. Switch to a provider to edit its data.',overallDetails:'Known sources',overallIncomplete:'Partial evidence',overallUnknown:'No evaluated sources',interface:'Interface',platform:'Platform',language:'Language',editJson:'Edit JSON',download:'Download JSON',upload:'Upload JSON',print:'Print / PDF',hint:'Click a floor to explore',modelTitle:'Model data (JSON)',modelHelp:'Add languages to languages and categories to groups. Provider estimates live in platformScores, and individual technology estimates in technologyScores. Overall is a read-only OR/MAX calculation, not a separate stored score. Unknown is null, never 0. Edit a provider or the JSON; this HTML works offline.',apply:'Apply data',reset:'Restore example',close:'Close',floorScore:'Support estimate (0–100%)',scoreHelp:'If the value is unknown, choose “Not evaluated”. Liquid height and color reflect the score.',unknown:'Not evaluated',save:'Save',badShape:'Invalid JSON: languages and groups arrays are required.',badLanguage:'Every language needs id, name, and platformScores.',notRated:'Not evaluated'},
+ ru:{contribute:'Добавить язык',about:'О проекте и методике',overallReadOnly:'Режим «Все платформы» рассчитывается автоматически. Выберите поставщика, чтобы изменить данные.',overallDetails:'Известные источники',overallIncomplete:'Неполные данные',overallUnknown:'Нет оценённых источников',interface:'Интерфейс',platform:'Платформа',language:'Язык',editJson:'Редактировать JSON',download:'Скачать JSON',upload:'Загрузить JSON',print:'Печать / PDF',hint:'Нажмите на этаж для подробностей',modelTitle:'Данные модели (JSON)',modelHelp:'Добавляй языки в languages, категории — в groups. Оценки поставщиков находятся в platformScores, а подтехнологий — в technologyScores. «Все платформы» вычисляется автоматически по ИЛИ/MAX и не хранится как отдельная оценка. Неизвестное значение — null, а не 0. HTML работает офлайн.',apply:'Применить данные',reset:'Вернуть пример',close:'Закрыть',floorScore:'Оценка поддержки (0–100%)',scoreHelp:'Если оценка неизвестна, нажми «Не оценено». Цвет и высота жидкости зависят от процента заполнения.',unknown:'Не оценено',save:'Сохранить',badShape:'Ошибка JSON: нужны массивы languages и groups.',badLanguage:'Для каждого языка нужны id, name и platformScores.',notRated:'Нет оценки'}
 };
 function t(key){return (translations[db.locale]||translations.en)[key]||key}
+Object.assign(translations.en,{estimated:'Estimated support',calculated:'Calculated across providers',provisional:'Provisional category estimate',details:'Technology details',sources:'Contributing providers',noTechnology:'Technology-level assessments are not available yet.',noEvidence:'No evidence links published yet. These percentages are preliminary estimates.',evaluated:'technologies evaluated',partial:'Partial coverage; not all technologies have been evaluated.',suggest:'Suggest an update',notRatedCaption:'Not evaluated'});
+Object.assign(translations.ru,{estimated:'Предварительная оценка поддержки',calculated:'Вычислено по всем поставщикам',provisional:'Предварительная оценка категории',details:'Подробности по технологиям',sources:'Поставщики, определившие результат',noTechnology:'Подробные оценки подтехнологий пока отсутствуют.',noEvidence:'Ссылки на источники пока не опубликованы. Проценты являются предварительными оценками.',evaluated:'подтехнологий оценено',partial:'Неполные данные: оценены не все технологии.',suggest:'Предложить изменение',notRatedCaption:'Не оценено'});
 function localizeUI(){document.querySelectorAll('[data-i18n]').forEach(el=>{el.textContent=t(el.dataset.i18n)});document.querySelectorAll('[data-i18n-aria]').forEach(el=>el.setAttribute('aria-label',t(el.dataset.i18nAria)))}
 const iconPaths={
  wand:'<path d="M4 21l11-11M11 7l6 6M17 2v4M15 4h4M21 12v4M19 14h4"/>',
@@ -651,7 +720,12 @@ function evaluateGroup(l,g){
   const best=legacy.length?Math.max(...legacy.map(x=>x.value)):null;
   return {value:best,partial:legacy.length<ids.length,mode:'group-fallback',sources:legacy.filter(x=>x.value===best).map(x=>x.provider),known:legacy.length,total:ids.length};
 }
-function scoreFor(l,g){return db.selectedPlatform==='overall'?evaluateGroup(l,g):{value:l.platformScores?.[db.selectedPlatform]?.[g.id]??null,partial:false,mode:'provider'}}
+function scoreFor(l,g){
+ if(db.selectedPlatform==='overall')return evaluateGroup(l,g);
+ const detailed=(g.technologies||[]).map(x=>l.technologyScores?.[db.selectedPlatform]?.[x.id]).filter(isScore);
+ if(detailed.length)return {value:Math.round(detailed.reduce((a,b)=>a+b,0)/detailed.length),partial:detailed.length<g.technologies.length,mode:'technology',known:detailed.length,total:g.technologies.length};
+ return {value:l.platformScores?.[db.selectedPlatform]?.[g.id]??null,partial:false,mode:'group-fallback'};
+}
 function render(){
  db.selectedPlatform=db.platforms?.some(p=>p.id===db.selectedPlatform)?db.selectedPlatform:'apple';
  const provider=db.platforms.find(p=>p.id===db.selectedPlatform);
@@ -673,37 +747,75 @@ function render(){
      btn.title=`${asName(l.name)} · ${asName(g.title)}: ${val==null?t('notRated'):val+'%'}${db.selectedPlatform==='overall'&&result.partial?' · '+t('overallIncomplete'):''}`;
      btn.setAttribute('aria-label',btn.title);
      btn.innerHTML=glassSvg(val,String(g.id)+'-'+String(l.id))+(db.selectedPlatform==='overall'&&result.partial?'<span class="coverage-flag" title="'+t('overallIncomplete')+'">*</span>':'');
-     btn.addEventListener('click',()=>editScore(l.id,g.id));m.append(btn);
+     btn.addEventListener('click',()=>showDetails(l.id,g.id));m.append(btn);
    }
  }
  $('note').textContent=asName(db.notes);
- $('jsonArea').value=JSON.stringify(db,null,2);
+
 }
 function safe(str){return String(str).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function editScore(lid,gid){
- selection={lid,gid};let l=db.languages.find(l=>l.id===lid),g=db.groups.find(g=>g.id===gid),overall=db.selectedPlatform==='overall';
- $('dialogTitle').textContent=asName(l.name)+' · '+asName(g.title);
- let value=overall?evaluateGroup(l,g).value:l.platformScores?.[db.selectedPlatform]?.[gid]??null;
- $('score').value=value??0;$('scoreRange').value=value??0;
- for(let id of ['score','scoreRange','saveScore','unknown'])$(id).disabled=overall;
- $('computedDetails').hidden=!overall;
- if(overall){
-  const r=evaluateGroup(l,g);
-  $('computedDetails').textContent=(r.value==null?t('overallUnknown'):r.value+'% · '+(r.mode==='technology'?r.known+'/'+r.total+' technologies evaluated':t('overallDetails')+': '+r.sources.join(', ')))+' · '+t('overallReadOnly');
+function providerName(pid){return asName(db.platforms.find(p=>p.id===pid)?.name)||pid}
+function showDetails(lid,gid){
+ const l=db.languages.find(x=>x.id===lid),g=db.groups.find(x=>x.id===gid);
+ const overall=db.selectedPlatform==='overall',r=scoreFor(l,g),val=r.value;
+ $('dialogKicker').textContent=asName(l.name)+' · '+asName(db.platforms.find(p=>p.id===db.selectedPlatform)?.name);
+ $('dialogTitle').textContent=asName(g.title);
+ $('dialogScore').textContent=isScore(val)?Math.round(val)+'%':'—';
+ $('dialogScoreCaption').textContent=t(isScore(val)?'estimated':'notRatedCaption');
+ $('dialogMeter').style.width=(isScore(val)?val:0)+'%';
+ $('detailSectionTitle').textContent=t('details');
+ $('dialogStatus').textContent=overall?t('calculated'):(r.mode==='group-fallback'?t('provisional'):(r.known+' / '+r.total+' '+t('evaluated')));
+ const rows=[];
+ if(overall&&r.mode==='technology'){
+  for(const part of r.parts){
+   const tech=g.technologies.find(x=>x.id===part.technology);
+   rows.push({label:tech?.name||part.technology,value:part.value,detail:part.providers.map(providerName).join(' · ')});
+  }
+ }else if(!overall&&r.mode==='technology'){
+  for(const tech of g.technologies){const score=l.technologyScores?.[db.selectedPlatform]?.[tech.id];rows.push({label:tech.name,value:isScore(score)?score:null,detail:''});}
+ }else if(overall){
+  const providers=providerIds().map(pid=>({id:pid,value:l.platformScores?.[pid]?.[g.id]})).filter(x=>isScore(x.value));
+  for(const p of providers)rows.push({label:providerName(p.id),value:p.value,detail:''});
  }
- $('dialog').showModal()
+ const holder=$('detailRows');holder.replaceChildren();
+ for(const item of rows){
+   const d=document.createElement('div');d.className='detail-row';
+   const upper=document.createElement('div');upper.className='detail-row-top';
+   const name=document.createElement('span');name.textContent=item.label;
+   const value=document.createElement('strong');value.textContent=isScore(item.value)?Math.round(item.value)+'%':'—';
+   upper.append(name,value);d.append(upper);
+   if(item.detail){const source=document.createElement('div');source.className='detail-source';source.textContent=item.detail;d.append(source)}
+   holder.append(d);
+ }
+ $('detailSectionTitle').hidden=rows.length===0;
+ const sources=[];
+ const ids=overall?providerIds():[db.selectedPlatform];
+ for(const provider of ids){
+  const evidence=l.evidence?.[provider]||{};
+  for(const technology of g.technologies||[]){
+   for(const item of evidence[technology.id]||[]){
+    if(typeof item?.url==='string' && /^https?:\/\//i.test(item.url))sources.push({provider,label:item.comment||technology.name,url:item.url});
+   }
+  }
+ }
+ const note=$('detailNote');note.replaceChildren();
+ if(rows.length===0)note.append(document.createTextNode(t('noTechnology')+' '));
+ if(!sources.length)note.append(document.createTextNode(t('noEvidence')));
+ else{
+  const heading=document.createElement('strong');heading.textContent=(db.locale==='ru'?'Источники':'Evidence')+': ';note.append(heading);
+  for(const item of sources){
+   const a=document.createElement('a');a.href=item.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=' '+item.label+' ('+providerName(item.provider)+')';a.style.cssText='color:#1b66ae;text-decoration:underline;display:inline-block;margin:2px 8px 2px 0';note.append(a);
+  }
+ }
+ if(r.partial)note.append(document.createTextNode(' '+t('partial')));
+ const params=new URLSearchParams({lang:lid,provider:overall?'':db.selectedPlatform,category:gid});
+ $('suggestLink').href='contribute.html?'+params.toString();
+ $('dialog').showModal();
 }
-function setScore(value){if(db.selectedPlatform==='overall')return;let l=db.languages.find(l=>l.id===selection.lid);l.platformScores??={};l.platformScores[db.selectedPlatform]??={};l.platformScores[db.selectedPlatform][selection.gid]=value;$('dialog').close();render()}
-$('score').addEventListener('input',()=>{$('scoreRange').value=$('score').value});$('scoreRange').addEventListener('input',()=>{$('score').value=$('scoreRange').value});
-$('saveScore').addEventListener('click',()=>setScore(clamp($('score').value)));$('unknown').addEventListener('click',()=>setScore(null));$('closeDialog').addEventListener('click',()=>$('dialog').close());
+$('closeDialog').addEventListener('click',()=>$('dialog').close());
+$('dialog').addEventListener('click',e=>{if(e.target===$('dialog'))$('dialog').close()});
 $('locale').addEventListener('change',e=>{db.locale=e.target.value;render()});
 $('platform').addEventListener('change',e=>{db.selectedPlatform=e.target.value;render()});
-$('showEditor').addEventListener('click',()=>{$('editor').classList.toggle('active');if($('editor').classList.contains('active'))$('editor').scrollIntoView({behavior:'smooth'})});
-$('hint').addEventListener('click',()=>editScore(db.languages[0].id,db.groups[0].id));
-$('applyJson').addEventListener('click',()=>{try{const d=JSON.parse($('jsonArea').value);if(!Array.isArray(d.languages)||!Array.isArray(d.groups)||!Array.isArray(d.platforms))throw Error(t('badShape'));for(let l of d.languages){if(!l.id||!l.name||!l.platformScores)throw Error(t('badLanguage'))}db=d;db.locale=$('locale').value;db.selectedPlatform=$('platform').value;$('jsonError').textContent='';render()}catch(err){$('jsonError').textContent=err.message}});
-$('resetData').addEventListener('click',()=>{db=structuredClone(original);render()});
-$('downloadJson').addEventListener('click',()=>{const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json;charset=utf-8'});let url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='language-data.json';a.click();URL.revokeObjectURL(url)});
-$('uploadJson').addEventListener('change',async e=>{let file=e.target.files[0];if(!file)return;try{const d=JSON.parse(await file.text());if(!Array.isArray(d.languages)||!Array.isArray(d.groups)||!Array.isArray(d.platforms))throw Error(t('badShape'));db=d;db.locale=$('locale').value;db.selectedPlatform=$('platform').value;render()}catch(err){alert(err.message)}e.target.value=''});
 // Fit both width and height onto a single landscape A3 page. This also
 // prevents right-side language columns being truncated by print margins.
 function preparePrint(){

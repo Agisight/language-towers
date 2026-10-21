@@ -46,7 +46,7 @@ def main():
             raise SystemExit(f'Missing English name: {folder}')
         language = {'id': meta['id'], 'name': name}
         languages.append((meta.get('order', 1000000), language))
-        entry = {'platformScores': {}, 'technologyScores': {}}
+        entry = {'platformScores': {}, 'technologyScores': {}, 'evidence': {}}
         for path in sorted(folder.glob('*.json')):
             if path.name == 'meta.json':
                 continue
@@ -70,6 +70,9 @@ def main():
                 entry['platformScores'][provider] = categories
             if technologies:
                 entry['technologyScores'][provider] = technologies
+            evidence = payload.get('evidence', {})
+            if isinstance(evidence, dict) and evidence:
+                entry['evidence'][provider] = evidence
         scores[meta['id']] = entry
     languages = [lang for _, lang in sorted(languages, key=lambda x: (x[0], x[1]['id']))]
     if not languages:
