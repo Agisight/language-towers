@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "language": {
+    "id": "tyv",
+    "name": {
+      "en": "Tuvan",
+      "ru": "Тувинский"
+    }
+  },
+  "provider": "apple",
+  "technologyScores": {
+    "autocorrect": 0,
+    "layout": 100
+  },
+  "evidence": {
+    "layout": [
+      {
+        "comment": "Illustrative only — replace with a verifiable source",
+        "url": "https://example.org"
+      }
+    ]
+  },
+  "submittedAt": "2026-10-21"
+}
