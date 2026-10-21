@@ -1,0 +1,96 @@
+{
+  "version": "3.0",
+  "title": {
+    "en": "Language Towers",
+    "ru": "Языковые башни"
+  },
+  "locale": "en",
+  "notes": {
+    "en": "* 30+ additional languages in community networks, including languages of the Russian Federation and Mayan languages. Values are provisional estimates. In Overall, each technology uses the best evaluated implementation. Unknown is not 0%; incomplete evidence is marked.",
+    "ru": "* Ещё 30+ языков в контактах сообществ, включая языки Российской Федерации и языки майя. Оценки предварительные. В режиме «Все платформы» для каждой технологии берётся лучшая известная реализация. Неизвестно ≠ 0%; неполные данные помечаются."
+  },
+  "project": {
+    "en": "Language Towers",
+    "ru": "Языковые башни"
+  },
+  "platforms": [
+    {
+      "id": "apple",
+      "name": {
+        "en": "Apple",
+        "ru": "Apple"
+      },
+      "detail": {
+        "en": "iOS / iPadOS / macOS",
+        "ru": "iOS / iPadOS / macOS"
+      }
+    },
+    {
+      "id": "android",
+      "name": {
+        "en": "Android (AOSP)",
+        "ru": "Android (AOSP)"
+      },
+      "detail": {
+        "en": "System platform",
+        "ru": "Системная платформа"
+      }
+    },
+    {
+      "id": "google",
+      "name": {
+        "en": "Google",
+        "ru": "Google"
+      },
+      "detail": {
+        "en": "Gboard, Translate, Gemini and services",
+        "ru": "Gboard, Translate, Gemini и сервисы"
+      }
+    },
+    {
+      "id": "yandex",
+      "name": {
+        "en": "Yandex",
+        "ru": "Яндекс"
+      },
+      "detail": {
+        "en": "Keyboard, Translate, Alice and services",
+        "ru": "Клавиатура, Переводчик, Алиса и сервисы"
+      }
+    },
+    {
+      "id": "microsoft",
+      "name": {
+        "en": "Microsoft",
+        "ru": "Microsoft"
+      },
+      "detail": {
+        "en": "Windows, SwiftKey, Copilot and services",
+        "ru": "Windows, SwiftKey, Copilot и сервисы"
+      }
+    },
+    {
+      "id": "community",
+      "name": {
+        "en": "Independent / Community",
+        "ru": "Независимые решения"
+      },
+      "detail": {
+        "en": "Open-source projects, community apps and research tools",
+        "ru": "Open-source, приложения сообществ и научные инструменты"
+      }
+    },
+    {
+      "id": "overall",
+      "name": {
+        "en": "Overall / Cross-platform",
+        "ru": "Все платформы (ИЛИ)"
+      },
+      "detail": {
+        "en": "Computed automatically using the best available support per technology (OR / MAX), not an independent provider.",
+        "ru": "Автоматически вычисляется по лучшей доступной поддержке каждой технологии (ИЛИ / MAX)."
+      }
+    }
+  ],
+  "selectedPlatform": "overall"
+}

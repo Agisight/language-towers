@@ -1,0 +1,508 @@
+{
+  "version": "3.0",
+  "title": {
+    "en": "Language Towers",
+    "ru": "Языковые башни"
+  },
+  "locale": "en",
+  "notes": {
+    "en": "* 30+ additional languages in community networks, including languages of the Russian Federation and Mayan languages. Values are provisional estimates. In Overall, each technology uses the best evaluated implementation. Unknown is not 0%; incomplete evidence is marked.",
+    "ru": "* Ещё 30+ языков в контактах сообществ, включая языки Российской Федерации и языки майя. Оценки предварительные. В режиме «Все платформы» для каждой технологии берётся лучшая известная реализация. Неизвестно ≠ 0%; неполные данные помечаются."
+  },
+  "project": {
+    "en": "Language Towers",
+    "ru": "Языковые башни"
+  },
+  "platforms": [
+    {
+      "id": "apple",
+      "name": {
+        "en": "Apple",
+        "ru": "Apple"
+      },
+      "detail": {
+        "en": "iOS / iPadOS / macOS",
+        "ru": "iOS / iPadOS / macOS"
+      }
+    },
+    {
+      "id": "android",
+      "name": {
+        "en": "Android (AOSP)",
+        "ru": "Android (AOSP)"
+      },
+      "detail": {
+        "en": "System platform",
+        "ru": "Системная платформа"
+      }
+    },
+    {
+      "id": "google",
+      "name": {
+        "en": "Google",
+        "ru": "Google"
+      },
+      "detail": {
+        "en": "Gboard, Translate, Gemini and services",
+        "ru": "Gboard, Translate, Gemini и сервисы"
+      }
+    },
+    {
+      "id": "yandex",
+      "name": {
+        "en": "Yandex",
+        "ru": "Яндекс"
+      },
+      "detail": {
+        "en": "Keyboard, Translate, Alice and services",
+        "ru": "Клавиатура, Переводчик, Алиса и сервисы"
+      }
+    },
+    {
+      "id": "microsoft",
+      "name": {
+        "en": "Microsoft",
+        "ru": "Microsoft"
+      },
+      "detail": {
+        "en": "Windows, SwiftKey, Copilot and services",
+        "ru": "Windows, SwiftKey, Copilot и сервисы"
+      }
+    },
+    {
+      "id": "community",
+      "name": {
+        "en": "Independent / Community",
+        "ru": "Независимые решения"
+      },
+      "detail": {
+        "en": "Open-source projects, community apps and research tools",
+        "ru": "Open-source, приложения сообществ и научные инструменты"
+      }
+    },
+    {
+      "id": "overall",
+      "name": {
+        "en": "Overall / Cross-platform",
+        "ru": "Все платформы (ИЛИ)"
+      },
+      "detail": {
+        "en": "Computed automatically using the best available support per technology (OR / MAX), not an independent provider.",
+        "ru": "Автоматически вычисляется по лучшей доступной поддержке каждой технологии (ИЛИ / MAX)."
+      }
+    }
+  ],
+  "selectedPlatform": "overall",
+  "groups": [
+    {
+      "id": "creative",
+      "title": {
+        "ru": "Генеративный ИИ",
+        "en": "Creative & Visual AI"
+      },
+      "subtitle": {
+        "ru": "Изображения, видео, GenAI",
+        "en": "Images, Video, GenAI"
+      },
+      "icon": "wand",
+      "iconColor": "#E7683D",
+      "technologies": [
+        {
+          "id": "images",
+          "name": "Image generation"
+        },
+        {
+          "id": "video",
+          "name": "Video generation"
+        },
+        {
+          "id": "multimodal",
+          "name": "Multimodal AI"
+        }
+      ]
+    },
+    {
+      "id": "companion",
+      "title": {
+        "ru": "ИИ-компаньон",
+        "en": "On-Device AI Companion"
+      },
+      "subtitle": {
+        "ru": "Ассистент, контекст, действия",
+        "en": "Assistant, Context, Actions"
+      },
+      "icon": "sparkles",
+      "iconColor": "#3281EA",
+      "technologies": [
+        {
+          "id": "dialogue",
+          "name": "Natural dialogue"
+        },
+        {
+          "id": "ondevice",
+          "name": "On-device AI"
+        },
+        {
+          "id": "actions",
+          "name": "Context & actions"
+        }
+      ]
+    },
+    {
+      "id": "search",
+      "title": {
+        "ru": "Поисковые технологии",
+        "en": "Search Technologies"
+      },
+      "subtitle": {
+        "ru": "Поиск, знания, ответы",
+        "en": "Search, Knowledge, Answers"
+      },
+      "icon": "search",
+      "iconColor": "#8942CD",
+      "technologies": [
+        {
+          "id": "search",
+          "name": "Language-aware search"
+        },
+        {
+          "id": "answers",
+          "name": "Answers"
+        }
+      ]
+    },
+    {
+      "id": "accessibility",
+      "title": {
+        "ru": "Функции доступности",
+        "en": "Accessibility"
+      },
+      "subtitle": {
+        "ru": "VoiceOver, озвучивание, Assistive Access",
+        "en": "VoiceOver, Spoken Content, Assistive Access"
+      },
+      "icon": "accessibility",
+      "iconColor": "#22A85D",
+      "technologies": [
+        {
+          "id": "voiceover",
+          "name": "VoiceOver"
+        },
+        {
+          "id": "captions",
+          "name": "Captions"
+        },
+        {
+          "id": "assistive",
+          "name": "Assistive features"
+        }
+      ]
+    },
+    {
+      "id": "speech",
+      "title": {
+        "ru": "Речь",
+        "en": "Speech"
+      },
+      "subtitle": {
+        "ru": "Диктовка, TTS, Siri",
+        "en": "Dictation, Text-to-Speech, Siri"
+      },
+      "icon": "speech",
+      "iconColor": "#E48234",
+      "technologies": [
+        {
+          "id": "asr",
+          "name": "Speech recognition"
+        },
+        {
+          "id": "tts",
+          "name": "Text-to-speech"
+        },
+        {
+          "id": "siri",
+          "name": "Siri"
+        }
+      ]
+    },
+    {
+      "id": "translation",
+      "title": {
+        "ru": "Перевод и локализация",
+        "en": "Translation & Localization"
+      },
+      "subtitle": {
+        "ru": "Перевод, система, приложения",
+        "en": "Translate, System, Apps"
+      },
+      "icon": "translation",
+      "iconColor": "#D83770",
+      "technologies": [
+        {
+          "id": "machine",
+          "name": "Machine translation"
+        },
+        {
+          "id": "system",
+          "name": "System localization"
+        },
+        {
+          "id": "apps",
+          "name": "App localization"
+        }
+      ]
+    },
+    {
+      "id": "keyboardTech",
+      "title": {
+        "ru": "Технологии клавиатуры",
+        "en": "Keyboard Technologies"
+      },
+      "subtitle": {
+        "ru": "Подсказки, автокоррекция, персонализация",
+        "en": "Predictions, Autocorrect, Personalization"
+      },
+      "icon": "keyboardTech",
+      "iconColor": "#338BDF",
+      "technologies": [
+        {
+          "id": "autocorrect",
+          "name": "Autocorrection"
+        },
+        {
+          "id": "predict",
+          "name": "Predictions"
+        },
+        {
+          "id": "swipe",
+          "name": "Swipe typing"
+        },
+        {
+          "id": "grammar",
+          "name": "Spelling & grammar"
+        }
+      ]
+    },
+    {
+      "id": "keyboard",
+      "title": {
+        "ru": "Клавиатура",
+        "en": "Keyboard"
+      },
+      "subtitle": {
+        "ru": "iPhone, iPad, macOS",
+        "en": "iPhone, iPad, macOS"
+      },
+      "icon": "keyboard",
+      "iconColor": "#8848D4",
+      "technologies": [
+        {
+          "id": "layout",
+          "name": "Native keyboard layout"
+        }
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "id": "en",
+      "name": {
+        "ru": "Английский",
+        "en": "English"
+      },
+      "platformScores": {
+        "apple": {
+          "creative": 99,
+          "companion": 99,
+          "search": 99,
+          "accessibility": 99,
+          "speech": 98,
+          "translation": 95,
+          "keyboardTech": 100,
+          "keyboard": 100
+        }
+      },
+      "technologyScores": {}
+    },
+    {
+      "id": "ru",
+      "name": {
+        "ru": "Русский",
+        "en": "Russian"
+      },
+      "platformScores": {
+        "apple": {
+          "creative": 0,
+          "companion": 45,
+          "search": 75,
+          "accessibility": 75,
+          "speech": 60,
+          "translation": 75,
+          "keyboardTech": 45,
+          "keyboard": 100
+        }
+      },
+      "technologyScores": {}
+    },
+    {
+      "id": "sah",
+      "name": {
+        "ru": "Саха",
+        "en": "Sakha"
+      },
+      "platformScores": {
+        "apple": {
+          "creative": 0,
+          "companion": 0,
+          "search": 0,
+          "accessibility": 0,
+          "speech": 0,
+          "translation": 0,
+          "keyboardTech": 0,
+          "keyboard": 100
+        }
+      },
+      "technologyScores": {}
+    },
+    {
+      "id": "tyv",
+      "name": {
+        "ru": "Тувинский",
+        "en": "Tuvan"
+      },
+      "platformScores": {
+        "apple": {
+          "creative": 0,
+          "companion": 0,
+          "search": 0,
+          "accessibility": 0,
+          "speech": 0,
+          "translation": 0,
+          "keyboardTech": 0,
+          "keyboard": 100
+        }
+      },
+      "technologyScores": {}
+    },
+    {
+      "id": "uz",
+      "name": {
+        "ru": "Узбекский",
+        "en": "Uzbek"
+      },
+      "platformScores": {
+        "apple": {
+          "creative": 0,
+          "companion": 0,
+          "search": 0,
+          "accessibility": 0,
+          "speech": 0,
+          "translation": 50,
+          "keyboardTech": 0,
+          "keyboard": 100
+        }
+      },
+      "technologyScores": {}
+    },
+    {
+      "id": "kk",
+      "name": {
+        "ru": "Казахский",
+        "en": "Kazakh"
+      },
+      "platformScores": {
+        "apple": {
+          "creative": 0,
+          "companion": 0,
+          "search": 0,
+          "accessibility": 0,
+          "speech": 0,
+          "translation": 50,
+          "keyboardTech": 0,
+          "keyboard": 100
+        }
+      },
+      "technologyScores": {}
+    },
+    {
+      "id": "mn",
+      "name": {
+        "ru": "Монгольский",
+        "en": "Mongolian"
+      },
+      "platformScores": {
+        "apple": {
+          "creative": 0,
+          "companion": 0,
+          "search": 0,
+          "accessibility": 0,
+          "speech": 0,
+          "translation": 50,
+          "keyboardTech": 0,
+          "keyboard": 100
+        }
+      },
+      "technologyScores": {}
+    },
+    {
+      "id": "tt",
+      "name": {
+        "ru": "Татарский",
+        "en": "Tatar"
+      },
+      "platformScores": {
+        "apple": {
+          "creative": 0,
+          "companion": 0,
+          "search": 0,
+          "accessibility": 0,
+          "speech": 0,
+          "translation": 0,
+          "keyboardTech": 0,
+          "keyboard": 0
+        }
+      },
+      "technologyScores": {}
+    },
+    {
+      "id": "ba",
+      "name": {
+        "ru": "Башкирский",
+        "en": "Bashkir"
+      },
+      "platformScores": {
+        "apple": {
+          "creative": 0,
+          "companion": 0,
+          "search": 0,
+          "accessibility": 0,
+          "speech": 0,
+          "translation": 0,
+          "keyboardTech": 0,
+          "keyboard": 0
+        }
+      },
+      "technologyScores": {}
+    },
+    {
+      "id": "more",
+      "name": {
+        "ru": "+30 языков*",
+        "en": "+30 more*"
+      },
+      "platformScores": {
+        "apple": {
+          "creative": null,
+          "companion": null,
+          "search": null,
+          "accessibility": null,
+          "speech": null,
+          "translation": null,
+          "keyboardTech": null,
+          "keyboard": null
+        }
+      },
+      "technologyScores": {}
+    }
+  ]
+}

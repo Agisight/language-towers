@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Language Towers — Digital Language Capabilities</title>
+<style>
+:root{--text:#121721;--muted:#65738a;--line:#e9ecf0;--app-bg:#f4f5f7;--col:94px;--left:242px;--gap:11px;--row:86px;--heading:40px}
+*{box-sizing:border-box}body{margin:0;background:var(--app-bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Arial,sans-serif}
+.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:14px max(18px,calc((100vw - 1820px)/2));background:#fff;border-bottom:1px solid var(--line)}.toolbar h1{font-size:15px;margin:0 18px 0 0;font-weight:670}.toolbar button,.toolbar select,.edit-actions button,.file-btn{font:inherit;font-size:13px;border-radius:9px;background:#fff;border:1px solid #dce1e8;color:#253041;padding:9px 12px;cursor:pointer}.toolbar button:hover,.file-btn:hover{background:#edf3fa}.toolbar .primary,.edit-actions .primary{background:#176cbb;border-color:#176cbb;color:#fff}.toolbar .primary:hover{background:#145997}.spacer{flex:1}.toolbar .file-btn input{display:none}.toolbar .nav-link{font-size:13px;color:#176cbb;text-decoration:none;padding:8px 11px;border-radius:9px;border:1px solid #dce1e8}.toolbar .nav-link:hover{background:#edf3fa}.provider-pick{font-size:13px}.provider-pick select{min-width:178px}
+.stage-wrap{overflow:auto;padding:22px 22px 32px}.stage{background:white;width:max-content;min-width:100%;margin:0 auto;padding:34px 35px 26px;box-shadow:0 8px 40px #1522330b;border:1px solid #eceff2;border-radius:18px}
+.provider-detail{text-align:center;color:#64748b;font-size:13px;margin:-26px 0 28px}.heading{text-align:center;font-size:36px;letter-spacing:-1.2px;font-weight:760;line-height:1.15;margin:0 0 36px;white-space:nowrap}
+.matrix{display:grid;grid-template-columns:var(--left) repeat(var(--n),var(--col));column-gap:var(--gap);align-items:center}
+.corner{height:var(--heading)}.language-label{display:flex;justify-content:center;align-items:end;height:var(--heading);font-weight:680;font-size:13.4px;white-space:nowrap;text-align:center;letter-spacing:-.1px;padding-bottom:8px}
+.feature{display:grid;grid-template-columns:40px 1fr;column-gap:9px;align-items:center;height:var(--row);padding-right:5px}.feature .feature-icon{width:34px;height:34px;display:grid;place-items:center}.feature .feature-icon svg{width:31px;height:31px;fill:none;stroke:currentColor;stroke-width:2.25;stroke-linecap:round;stroke-linejoin:round}
+.feature-title{font-size:13px;font-weight:670;line-height:1.17;letter-spacing:-.15px}.feature-desc{font-size:10.4px;color:var(--muted);line-height:1.3;margin-top:4px;max-width:179px}
+.tank{border:0;padding:0;margin:0;background:none;cursor:pointer;width:var(--col);height:var(--row);display:flex;align-items:center;justify-content:center}.tank{position:relative}.tank svg{width:100%;height:100%;overflow:visible}.coverage-flag{position:absolute;top:6px;right:4px;font-size:11px;color:#e0aa67;font-weight:800;pointer-events:none}.tank:focus-visible{outline:2px solid #1666c2;outline-offset:2px;border-radius:8px}
+.bottom-note{font-size:11px;color:#717c8e;margin-top:28px;max-width:calc(var(--left) + var(--n) * (var(--col) + var(--gap)) );line-height:1.6}.bottom-note em{font-style:normal;color:#2f4259}
+.editor{margin:10px auto 24px;max-width:1180px;padding:22px;border-radius:14px;background:white;border:1px solid var(--line);display:none}.editor.active{display:block}.editor h2{font-size:18px;margin:0 0 10px}.editor p{font-size:13px;color:var(--muted);line-height:1.5}.editor textarea{font:12px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;width:100%;height:360px;border-radius:9px;border:1px solid #bfcbd9;padding:12px;resize:vertical}.edit-actions{display:flex;gap:9px;margin-top:12px}.edit-error{color:#b91c1c;font-size:12px;margin:7px 0;min-height:14px}
+.dialog{border:1px solid #dee4eb;border-radius:18px;padding:22px;width:min(420px,calc(100vw - 36px));box-shadow:0 24px 90px #14203238}.dialog::backdrop{background:#151a2460}.dialog h2{margin:0 0 17px;font-size:19px}.dialog label{display:block;font-size:12px;color:#536073;margin-bottom:8px}.dialog input[type=number]{padding:9px;border:1px solid #c9d2de;border-radius:8px;width:110px;font:inherit}.dialog input[type=range]{width:100%;accent-color:#248866}.dialog .ed-row{display:flex;align-items:center;gap:12px;margin:12px 0 21px}.dialog .close{float:right;border:0;background:none;font-size:23px;cursor:pointer}.dialog .edit-actions{justify-content:flex-end}.dialog button{cursor:pointer}
+@media print{body{background:white}.toolbar,.editor{display:none!important}.stage-wrap{overflow:visible;padding:0}.stage{border:0;box-shadow:none;border-radius:0;padding:10px;transform-origin:top left}.tank{break-inside:avoid}@page{size:landscape;margin:8mm}}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <h1>Language Towers</h1>
+  <label style="font-size:13px"><span data-i18n="interface">Interface</span> <select id="locale"><option value="en">English</option><option value="ru">Русский</option></select></label>
+  <label class="provider-pick"><span data-i18n="platform">Platform</span> <select id="platform"></select></label>
+  <a class="nav-link" href="info.html" data-i18n="about">About / Methodology</a>
+  <button id="showEditor" data-i18n="editJson">Edit JSON</button>
+  <button id="downloadJson" data-i18n="download">Download JSON</button>
+  <label class="file-btn"><span data-i18n="upload">Upload JSON</span> <input type="file" accept=".json,application/json" id="uploadJson"></label>
+  <button id="print" data-i18n="print">Print / PDF</button>
+  <span class="spacer"></span><button class="primary" id="hint" data-i18n="hint">Click a floor → view / edit</button>
+</div>
+<div class="editor" id="editor"><h2 data-i18n="modelTitle">Model data (JSON)</h2><p data-i18n="modelHelp">Add languages to languages and categories to groups. Provider estimates live in platformScores, and individual technology estimates in technologyScores. Overall is a read-only OR/MAX calculation, not a separate stored score. Unknown is null, never 0. Edit a provider or the JSON; this HTML works offline.</p><textarea spellcheck="false" id="jsonArea"></textarea><div id="jsonError" class="edit-error"></div><div class="edit-actions"><button class="primary" id="applyJson" data-i18n="apply">Apply data</button><button id="resetData" data-i18n="reset">Restore example</button></div></div>
+<div class="stage-wrap"><main class="stage" id="stage"><h2 class="heading" id="title"></h2><p class="provider-detail" id="providerDetail"></p><div class="matrix" id="matrix"></div><div class="bottom-note" id="note"></div></main></div>
+<dialog class="dialog" id="dialog"><button class="close" id="closeDialog" aria-label="Close" data-i18n-aria="close">×</button><h2 id="dialogTitle"></h2><label for="score" data-i18n="floorScore">Support estimate (0–100%)</label><div class="ed-row"><input id="score" type="number" min="0" max="100" step="1"><span>%</span></div><input id="scoreRange" type="range" min="0" max="100" step="1"><p style="color:#69778b;font-size:12px" data-i18n="scoreHelp">If the value is unknown, choose “Not evaluated”. Liquid height and color reflect the score.</p><p id="computedDetails" hidden style="color:#536073;font-size:13px;line-height:1.5"></p><div class="edit-actions"><button id="unknown" data-i18n="unknown">Not evaluated</button><button class="primary" id="saveScore" data-i18n="save">Save</button></div></dialog>
+<script id="initial-data" type="application/json">{
+  "version": "3.0",
+  "title": {
+    "en": "Language Towers",
+    "ru": "Языковые башни"
+  },
+  "locale": "en",
+  "notes": {
+    "en": "* 30+ additional languages in community networks, including languages of the Russian Federation and Mayan languages. Values are provisional estimates. In Overall, each technology uses the best evaluated implementation. Unknown is not 0%; incomplete evidence is marked.",
+    "ru": "* Ещё 30+ языков в контактах сообществ, включая языки Российской Федерации и языки майя. Оценки предварительные. В режиме «Все платформы» для каждой технологии берётся лучшая известная реализация. Неизвестно ≠ 0%; неполные данные помечаются."
+  },
+  "project": {
+    "en": "Language Towers",
+    "ru": "Языковые башни"
+  },
+  "platforms": [
+    {
+      "id": "apple",
+      "name": {
+        "en": "Apple",
+        "ru": "Apple"
+      },
+      "detail": {
+        "en": "iOS / iPadOS / macOS",
+        "ru": "iOS / iPadOS / macOS"
+      }
+    },
+    {
+      "id": "android",
+      "name": {
+        "en": "Android (AOSP)",
+        "ru": "Android (AOSP)"
+      },
+      "detail": {
+        "en": "System platform",
+        "ru": "Системная платформа"
+      }
+    },
+    {
+      "id": "google",
+      "name": {
+        "en": "Google",
+        "ru": "Google"
+      },
+      "detail": {
+        "en": "Gboard, Translate, Gemini and services",
+        "ru": "Gboard, Translate, Gemini и сервисы"
+      }
+    },
+    {
+      "id": "yandex",
+      "name": {
+        "en": "Yandex",
+        "ru": "Яндекс"
+      },
+      "detail": {
+        "en": "Keyboard, Translate, Alice and services",
+        "ru": "Клавиатура, Переводчик, Алиса и сервисы"
+      }
+    },
+    {
+      "id": "microsoft",
+      "name": {
+        "en": "Microsoft",
+        "ru": "Microsoft"
+      },
+      "detail": {
+        "en": "Windows, SwiftKey, Copilot and services",
+        "ru": "Windows, SwiftKey, Copilot и сервисы"
+      }
+    },
+    {
+      "id": "community",
+      "name": {
+        "en": "Independent / Community",
+        "ru": "Независимые решения"
+      },
+      "detail": {
+        "en": "Open-source projects, community apps and research tools",
+        "ru": "Open-source, приложения сообществ и научные инструменты"
+      }
+    },
+    {
+      "id": "overall",
+      "name": {
+        "en": "Overall / Cross-platform",
+        "ru": "Все платформы (ИЛИ)"
+      },
+      "detail": {
+        "en": "Computed automatically using the best available support per technology (OR / MAX), not an independent provider.",
+        "ru": "Автоматически вычисляется по лучшей доступной поддержке каждой технологии (ИЛИ / MAX)."
+      }
+    }
+  ],
+  "selectedPlatform": "overall",
+  "groups": [
+    {
+      "id": "creative",
+      "title": {
+        "ru": "Генеративный ИИ",
+        "en": "Creative & Visual AI"
+      },
+      "subtitle": {
+        "ru": "Изображения, видео, GenAI",
+        "en": "Images, Video, GenAI"
+      },
+      "icon": "wand",
+      "iconColor": "#E7683D",
+      "technologies": [
+        {
+          "id": "images",
+          "name": "Image generation"
+        },
+        {
+          "id": "video",
+          "name": "Video generation"
+        },
+        {
+          "id": "multimodal",
+          "name": "Multimodal AI"
+        }
+      ]
+    },
+    {
+      "id": "companion",
+      "title": {
+        "ru": "ИИ-компаньон",
+        "en": "On-Device AI Companion"
+      },
+      "subtitle": {
+        "ru": "Ассистент, контекст, действия",
+        "en": "Assistant, Context, Actions"
+      },
+      "icon": "sparkles",
+      "iconColor": "#3281EA",
+      "technologies": [
+        {
+          "id": "dialogue",
+          "name": "Natural dialogue"
+        },
+        {
+          "id": "ondevice",
+          "name": "On-device AI"
+        },
+        {
+          "id": "actions",
+          "name": "Context & actions"
+        }
+      ]
+    },
+    {
+      "id": "search",
+      "title": {
+        "ru": "Поисковые технологии",
+        "en": "Search Technologies"
+      },
+      "subtitle": {
+        "ru": "Поиск, знания, ответы",
+        "en": "Search, Knowledge, Answers"
+      },
+      "icon": "search",
+      "iconColor": "#8942CD",
+      "technologies": [
+        {
+          "id": "search",
+          "name": "Language-aware search"
+        },
+        {
+          "id": "answers",
+          "name": "Answers"
+        }
+      ]
+    },
+    {
+      "id": "accessibility",
+      "title": {
+        "ru": "Функции доступности",
+        "en": "Accessibility"
+      },
+      "subtitle": {
+        "ru": "VoiceOver, озвучивание, Assistive Access",
+        "en": "VoiceOver, Spoken Content, Assistive Access"
+      },
+      "icon": "accessibility",
+      "iconColor": "#22A85D",
+      "technologies": [
+        {
+          "id": "voiceover",
+          "name": "VoiceOver"
+        },
+        {
+          "id": "captions",
+          "name": "Captions"
+        },
+        {
+          "id": "assistive",
+          "name": "Assistive features"
+        }
+      ]
+    },
+    {
+      "id": "speech",
+      "title": {
+        "ru": "Речь",
+        "en": "Speech"
+      },
+      "subtitle": {
+        "ru": "Диктовка, TTS, Siri",
+        "en": "Dictation, Text-to-Speech, Siri"
+      },
+      "icon": "speech",
+      "iconColor": "#E48234",
+      "technologies": [
+        {
+          "id": "asr",
+          "name": "Speech recognition"
+        },
+        {
+          "id": "tts",
+          "name": "Text-to-speech"
+        },
+        {
+          "id": "siri",
+          "name": "Siri"
+        }
+      ]
+    },
+    {
+      "id": "translation",
+      "title": {
+        "ru": "Перевод и локализация",
+        "en": "Translation & Localization"
+      },
+      "subtitle": {
+        "ru": "Перевод, система, приложения",
+        "en": "Translate, System, Apps"
+      },
+      "icon": "translation",
+      "iconColor": "#D83770",
+      "technologies": [
+        {
+          "id": "machine",
+          "name": "Machine translation"
+        },
+        {
+          "id": "system",
+          "name": "System localization"
+        },
+        {
+          "id": "apps",
+          "name": "App localization"
+        }
+      ]
+    },
+    {
+      "id": "keyboardTech",
+      "title": {
+        "ru": "Технологии клавиатуры",
+        "en": "Keyboard Technologies"
+      },
+      "subtitle": {
+        "ru": "Подсказки, автокоррекция, персонализация",
+        "en": "Predictions, Autocorrect, Personalization"
+      },
+      "icon": "keyboardTech",
+      "iconColor": "#338BDF",
+      "technologies": [
+        {
+          "id": "autocorrect",
+          "name": "Autocorrection"
+        },
+        {
+          "id": "predict",
+          "name": "Predictions"
+        },
+        {
+          "id": "swipe",
+          "name": "Swipe typing"
+        },
+        {
+          "id": "grammar",
+          "name": "Spelling & grammar"
+        }
+      ]
+    },
+    {
+      "id": "keyboard",
+      "title": {
+        "ru": "Клавиатура",
+        "en": "Keyboard"
+      },
+      "subtitle": {
+        "ru": "iPhone, iPad, macOS",
+        "en": "iPhone, iPad, macOS"
+      },
+      "icon": "keyboard",
+      "iconColor": "#8848D4",
+      "technologies": [
+        {
+          "id": "layout",
+          "name": "Native keyboard layout"
+        }
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "id": "en",
+      "name": {
+        "ru": "Английский",
+        "en": "English"
+      },
+      "platformScores": {
+        "apple": {
+          "creative": 99,
+          "companion": 99,
+          "search": 99,
+          "accessibility": 99,
+          "speech": 98,
+          "translation": 95,
+          "keyboardTech": 100,
+          "keyboard": 100
+        }
+      },
+      "technologyScores": {}
+    },
+    {
+      "id": "ru",
+      "name": {
+        "ru": "Русский",
+        "en": "Russian"
+      },
+      "platformScores": {
+        "apple": {
+          "creative": 0,
+          "companion": 45,
+          "search": 75,
+          "accessibility": 75,
+          "speech": 60,
+          "translation": 75,
+          "keyboardTech": 45,
+          "keyboard": 100
+        }
+      },
+      "technologyScores": {}
+    },
+    {
+      "id": "sah",
+      "name": {
+        "ru": "Саха",
+        "en": "Sakha"
+      },
+      "platformScores": {
+        "apple": {
+          "creative": 0,
+          "companion": 0,
+          "search": 0,
+          "accessibility": 0,
+          "speech": 0,
+          "translation": 0,
+          "keyboardTech": 0,
+          "keyboard": 100
+        }
+      },
+      "technologyScores": {}
+    },
+    {
+      "id": "tyv",
+      "name": {
+        "ru": "Тувинский",
+        "en": "Tuvan"
+      },
+      "platformScores": {
+        "apple": {
+          "creative": 0,
+          "companion": 0,
+          "search": 0,
+          "accessibility": 0,
+          "speech": 0,
+          "translation": 0,
+          "keyboardTech": 0,
+          "keyboard": 100
+        }
+      },
+      "technologyScores": {}
+    },
+    {
+      "id": "uz",
+      "name": {
+        "ru": "Узбекский",
+        "en": "Uzbek"
+      },
+      "platformScores": {
+        "apple": {
+          "creative": 0,
+          "companion": 0,
+          "search": 0,
+          "accessibility": 0,
+          "speech": 0,
+          "translation": 50,
+          "keyboardTech": 0,
+          "keyboard": 100
+        }
+      },
+      "technologyScores": {}
+    },
+    {
+      "id": "kk",
+      "name": {
+        "ru": "Казахский",
+        "en": "Kazakh"
+      },
+      "platformScores": {
+        "apple": {
+          "creative": 0,
+          "companion": 0,
+          "search": 0,
+          "accessibility": 0,
+          "speech": 0,
+          "translation": 50,
+          "keyboardTech": 0,
+          "keyboard": 100
+        }
+      },
+      "technologyScores": {}
+    },
+    {
+      "id": "mn",
+      "name": {
+        "ru": "Монгольский",
+        "en": "Mongolian"
+      },
+      "platformScores": {
+        "apple": {
+          "creative": 0,
+          "companion": 0,
+          "search": 0,
+          "accessibility": 0,
+          "speech": 0,
+          "translation": 50,
+          "keyboardTech": 0,
+          "keyboard": 100
+        }
+      },
+      "technologyScores": {}
+    },
+    {
+      "id": "tt",
+      "name": {
+        "ru": "Татарский",
+        "en": "Tatar"
+      },
+      "platformScores": {
+        "apple": {
+          "creative": 0,
+          "companion": 0,
+          "search": 0,
+          "accessibility": 0,
+          "speech": 0,
+          "translation": 0,
+          "keyboardTech": 0,
+          "keyboard": 0
+        }
+      },
+      "technologyScores": {}
+    },
+    {
+      "id": "ba",
+      "name": {
+        "ru": "Башкирский",
+        "en": "Bashkir"
+      },
+      "platformScores": {
+        "apple": {
+          "creative": 0,
+          "companion": 0,
+          "search": 0,
+          "accessibility": 0,
+          "speech": 0,
+          "translation": 0,
+          "keyboardTech": 0,
+          "keyboard": 0
+        }
+      },
+      "technologyScores": {}
+    },
+    {
+      "id": "more",
+      "name": {
+        "ru": "+30 языков*",
+        "en": "+30 more*"
+      },
+      "platformScores": {
+        "apple": {
+          "creative": null,
+          "companion": null,
+          "search": null,
+          "accessibility": null,
+          "speech": null,
+          "translation": null,
+          "keyboardTech": null,
+          "keyboard": null
+        }
+      },
+      "technologyScores": {}
+    }
+  ]
+}</script>
+<script>
+(()=>{'use strict';
+let db=JSON.parse(document.getElementById('initial-data').textContent);
+const original=structuredClone(db);
+const $=id=>document.getElementById(id);
+let selection=null;
+const translations={
+ en:{about:'About & methodology',overallReadOnly:'Overall is calculated automatically. Switch to a provider to edit its data.',overallDetails:'Known sources',overallIncomplete:'Partial evidence',overallUnknown:'No evaluated sources',interface:'Interface',platform:'Platform',language:'Language',editJson:'Edit JSON',download:'Download JSON',upload:'Upload JSON',print:'Print / PDF',hint:'Click a floor → view / edit',modelTitle:'Model data (JSON)',modelHelp:'Add languages to languages and categories to groups. Provider estimates live in platformScores, and individual technology estimates in technologyScores. Overall is a read-only OR/MAX calculation, not a separate stored score. Unknown is null, never 0. Edit a provider or the JSON; this HTML works offline.',apply:'Apply data',reset:'Restore example',close:'Close',floorScore:'Support estimate (0–100%)',scoreHelp:'If the value is unknown, choose “Not evaluated”. Liquid height and color reflect the score.',unknown:'Not evaluated',save:'Save',badShape:'Invalid JSON: languages and groups arrays are required.',badLanguage:'Every language needs id, name, and platformScores.',notRated:'Not evaluated'},
+ ru:{about:'О проекте и методике',overallReadOnly:'Режим «Все платформы» рассчитывается автоматически. Выберите поставщика, чтобы изменить данные.',overallDetails:'Известные источники',overallIncomplete:'Неполные данные',overallUnknown:'Нет оценённых источников',interface:'Интерфейс',platform:'Платформа',language:'Язык',editJson:'Редактировать JSON',download:'Скачать JSON',upload:'Загрузить JSON',print:'Печать / PDF',hint:'Нажми на этаж → подробности',modelTitle:'Данные модели (JSON)',modelHelp:'Добавляй языки в languages, категории — в groups. Оценки поставщиков находятся в platformScores, а подтехнологий — в technologyScores. «Все платформы» вычисляется автоматически по ИЛИ/MAX и не хранится как отдельная оценка. Неизвестное значение — null, а не 0. HTML работает офлайн.',apply:'Применить данные',reset:'Вернуть пример',close:'Закрыть',floorScore:'Оценка поддержки (0–100%)',scoreHelp:'Если оценка неизвестна, нажми «Не оценено». Цвет и высота жидкости зависят от процента заполнения.',unknown:'Не оценено',save:'Сохранить',badShape:'Ошибка JSON: нужны массивы languages и groups.',badLanguage:'Для каждого языка нужны id, name и platformScores.',notRated:'Нет оценки'}
+};
+function t(key){return (translations[db.locale]||translations.en)[key]||key}
+function localizeUI(){document.querySelectorAll('[data-i18n]').forEach(el=>{el.textContent=t(el.dataset.i18n)});document.querySelectorAll('[data-i18n-aria]').forEach(el=>el.setAttribute('aria-label',t(el.dataset.i18nAria)))}
+const iconPaths={
+ wand:'<path d="M4 21l11-11M11 7l6 6M17 2v4M15 4h4M21 12v4M19 14h4"/>',
+ sparkles:'<path d="m12 2 2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2Z"/>',
+ search:'<circle cx="10.7" cy="10.7" r="7.2"/><path d="m16.1 16.1 6 6"/>',
+ accessibility:'<circle cx="12" cy="12" r="10"/><circle cx="12" cy="5.5" r="1.2"/><path d="M6.5 9.5 12 11l5.5-1.5M12 11v5M12 16l-3 4M12 16l3 4"/>',
+ speech:'<path d="M3 9v6M7 5v14M11 2v20M15 6v12M19 9v6M23 10v4"/>',
+ translation:'<rect x="2.5" y="2.5" width="14" height="14" rx="3"/><path d="M7 12l2-6 2 6M8 10h2M17 11h4v9h-8v-4M15 18l4-5M16 13l4 5"/>',
+ keyboardTech:'<rect x="2" y="5" width="20" height="14" rx="2.6"/><path d="M5 9h.1M9 9h.1M13 9h.1M17 9h.1M5 12h.1M9 12h.1M13 12h.1M17 12h.1M7 16h10"/>',
+ keyboard:'<rect x="2" y="5" width="20" height="14" rx="2.6"/><path d="M5 9h.1M9 9h.1M13 9h.1M17 9h.1M5 12h.1M9 12h.1M13 12h.1M17 12h.1M7 16h10"/>'
+};
+function asName(obj){return typeof obj==='string'?obj:(obj?.[db.locale]??obj?.en??obj?.ru??'')}
+function clamp(x){return Math.max(0,Math.min(100,Number(x)||0))}
+// A smooth, non-neon palette. 0% has no liquid; 1–15% uses pale graphite, 100% uses muted emerald.
+function fillColor(v){if(v<=15)return ['#596675','#9aa6af'];if(v<=35)return ['#7e4048','#b55b5b'];if(v<=55)return ['#af641e','#e8a646'];if(v<=75)return ['#78942d','#b5cc4a'];if(v<95)return ['#287f59','#5fb384'];return ['#126647','#21956a']}
+function glassSvg(val,key){
+ const pct=val===null||val===undefined?null:clamp(val),pctValue=pct??0;
+ const id='g'+key.replace(/[^a-zA-Z0-9]/g,'');
+ const h=70*pctValue/100,y=77-h;
+ const color=fillColor(pctValue);
+ const liquid=pctValue<=0?'':`<g clip-path="url(#${id}clip)"><rect x="9" y="${y.toFixed(3)}" width="78" height="${(h+.3).toFixed(3)}" fill="url(#${id}liquid)"/><ellipse cx="48" cy="${y.toFixed(3)}" rx="39" ry="2.1" fill="${color[1]}" opacity=".88"/><path d="M13 ${(y+3).toFixed(2)}V75" stroke="#fff" opacity=".10" stroke-width="1.7"/></g>`;
+ return `<svg role="img" aria-label="${pct===null?t('notRated'):pct+'%'}" viewBox="0 0 96 86" xmlns="http://www.w3.org/2000/svg">
+ <defs><linearGradient id="${id}glass" x1="0" x2="1" y1="0" y2=".2"><stop stop-color="#5b666f"/><stop offset=".09" stop-color="#d1d8de"/><stop offset=".17" stop-color="#1e252b"/><stop offset=".85" stop-color="#262d32"/><stop offset=".94" stop-color="#a0a7af"/><stop offset="1" stop-color="#2c353b"/></linearGradient>
+ <linearGradient id="${id}liquid" x1="0" y1="0" x2=".94" y2=".9"><stop stop-color="${color[1]}"/><stop offset=".45" stop-color="${color[0]}"/><stop offset="1" stop-color="${color[0]}"/></linearGradient>
+ <linearGradient id="${id}pane" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2b333a"/><stop offset=".53" stop-color="#171d22"/><stop offset="1" stop-color="#353e46"/></linearGradient>
+ <clipPath id="${id}clip"><rect x="9" y="7" width="78" height="70" rx="7"/></clipPath>
+ <filter id="${id}shadow" x="-20%" y="-30%" width="140%" height="160%"><feGaussianBlur stdDeviation="1.3"/></filter>
+ </defs>
+ <ellipse cx="48" cy="81" rx="43" ry="2.7" fill="#34414b" opacity=".16" filter="url(#${id}shadow)"/>
+ <rect x="3" y="2" width="90" height="80" rx="11" fill="url(#${id}glass)" stroke="#65717b" stroke-width=".5"/>
+ <rect x="8" y="6" width="80" height="72" rx="7.5" fill="url(#${id}pane)"/>
+ ${liquid}
+ <path d="M11 15V67" stroke="#f6fbff" stroke-width="2" opacity=".34" stroke-linecap="round"/>
+ <path d="M86 15V67" stroke="#f6fbff" stroke-width="1.8" opacity=".19" stroke-linecap="round"/>
+ <path d="M12 6H83" stroke="#fbfdff" stroke-width="2.3" opacity=".72" stroke-linecap="round"/>
+ <path d="M13 78H83" stroke="#fff" stroke-width="1.8" opacity=".54" stroke-linecap="round"/>
+ <rect x="8" y="6" width="80" height="72" rx="7.5" fill="none" stroke="#e0e7ed" opacity=".32" stroke-width=".8"/>
+ </svg>`;
+}
+// Aggregation is done PER TECHNOLOGY, not by taking the maximum of group averages.
+// Historical broad group estimates are a clearly labeled fallback until technology-level data exists.
+const providerIds=()=>db.platforms.filter(p=>!['overall'].includes(p.id)).map(p=>p.id);
+const isScore=v=>typeof v==='number'&&Number.isFinite(v)&&v>=0&&v<=100;
+function evaluateGroup(l,g){
+  const ids=providerIds();
+  const techIds=(g.technologies||[]).map(x=>x.id);
+  const allTech=techIds.flatMap(tid=>ids.map(pid=>l.technologyScores?.[pid]?.[tid]));
+  const anyTech=allTech.some(isScore);
+  if(anyTech){
+    const parts=techIds.map(tid=>{
+      const scores=ids.map(pid=>({provider:pid,value:l.technologyScores?.[pid]?.[tid]})).filter(x=>isScore(x.value));
+      const best=scores.length?Math.max(...scores.map(x=>x.value)):null;
+      return {technology:tid,value:best,providers:scores.filter(x=>x.value===best).map(x=>x.provider)};
+    });
+    const known=parts.filter(x=>isScore(x.value));
+    return {value:known.length?Math.round(known.reduce((s,x)=>s+x.value,0)/known.length):null,partial:known.length<parts.length||parts.some(x=>x.providers.length<ids.length),mode:'technology',parts,known:known.length,total:parts.length};
+  }
+  const legacy=ids.map(pid=>({provider:pid,value:l.platformScores?.[pid]?.[g.id]})).filter(x=>isScore(x.value));
+  const best=legacy.length?Math.max(...legacy.map(x=>x.value)):null;
+  return {value:best,partial:legacy.length<ids.length,mode:'group-fallback',sources:legacy.filter(x=>x.value===best).map(x=>x.provider),known:legacy.length,total:ids.length};
+}
+function scoreFor(l,g){return db.selectedPlatform==='overall'?evaluateGroup(l,g):{value:l.platformScores?.[db.selectedPlatform]?.[g.id]??null,partial:false,mode:'provider'}}
+function render(){
+ db.selectedPlatform=db.platforms?.some(p=>p.id===db.selectedPlatform)?db.selectedPlatform:'apple';
+ const provider=db.platforms.find(p=>p.id===db.selectedPlatform);
+ const platformSelect=$('platform');platformSelect.innerHTML='';
+ for(const p of db.platforms){let opt=document.createElement('option');opt.value=p.id;opt.textContent=asName(p.name);platformSelect.append(opt)}
+ platformSelect.value=db.selectedPlatform;
+ $('providerDetail').textContent=asName(provider?.detail);
+ db.locale=['en','ru'].includes(db.locale)?db.locale:'en';$('locale').value=db.locale;document.documentElement.lang=db.locale;localizeUI();
+ $('title').textContent=asName(db.title);
+ const m=$('matrix');m.innerHTML='';m.style.setProperty('--n',db.languages.length);
+ const corner=document.createElement('div');corner.className='corner';m.append(corner);
+ for(let l of db.languages){let d=document.createElement('div');d.className='language-label';d.textContent=asName(l.name);m.append(d)}
+ for(let g of db.groups){
+   const feat=document.createElement('div');feat.className='feature';
+   feat.innerHTML=`<div class="feature-icon" style="color:${g.iconColor||'#456'}"><svg viewBox="0 0 24 24">${iconPaths[g.icon]||iconPaths.sparkles}</svg></div><div><div class="feature-title">${safe(asName(g.title))}</div><div class="feature-desc">${safe(asName(g.subtitle))}</div></div>`;
+   m.append(feat);
+   for(let l of db.languages){
+     const btn=document.createElement('button');btn.type='button';btn.className='tank';let result=scoreFor(l,g),val=result.value;
+     btn.title=`${asName(l.name)} · ${asName(g.title)}: ${val==null?t('notRated'):val+'%'}${db.selectedPlatform==='overall'&&result.partial?' · '+t('overallIncomplete'):''}`;
+     btn.setAttribute('aria-label',btn.title);
+     btn.innerHTML=glassSvg(val,String(g.id)+'-'+String(l.id))+(db.selectedPlatform==='overall'&&result.partial?'<span class="coverage-flag" title="'+t('overallIncomplete')+'">*</span>':'');
+     btn.addEventListener('click',()=>editScore(l.id,g.id));m.append(btn);
+   }
+ }
+ $('note').textContent=asName(db.notes);
+ $('jsonArea').value=JSON.stringify(db,null,2);
+}
+function safe(str){return String(str).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function editScore(lid,gid){
+ selection={lid,gid};let l=db.languages.find(l=>l.id===lid),g=db.groups.find(g=>g.id===gid),overall=db.selectedPlatform==='overall';
+ $('dialogTitle').textContent=asName(l.name)+' · '+asName(g.title);
+ let value=overall?evaluateGroup(l,g).value:l.platformScores?.[db.selectedPlatform]?.[gid]??null;
+ $('score').value=value??0;$('scoreRange').value=value??0;
+ for(let id of ['score','scoreRange','saveScore','unknown'])$(id).disabled=overall;
+ $('computedDetails').hidden=!overall;
+ if(overall){
+  const r=evaluateGroup(l,g);
+  $('computedDetails').textContent=(r.value==null?t('overallUnknown'):r.value+'% · '+(r.mode==='technology'?r.known+'/'+r.total+' technologies evaluated':t('overallDetails')+': '+r.sources.join(', ')))+' · '+t('overallReadOnly');
+ }
+ $('dialog').showModal()
+}
+function setScore(value){if(db.selectedPlatform==='overall')return;let l=db.languages.find(l=>l.id===selection.lid);l.platformScores??={};l.platformScores[db.selectedPlatform]??={};l.platformScores[db.selectedPlatform][selection.gid]=value;$('dialog').close();render()}
+$('score').addEventListener('input',()=>{$('scoreRange').value=$('score').value});$('scoreRange').addEventListener('input',()=>{$('score').value=$('scoreRange').value});
+$('saveScore').addEventListener('click',()=>setScore(clamp($('score').value)));$('unknown').addEventListener('click',()=>setScore(null));$('closeDialog').addEventListener('click',()=>$('dialog').close());
+$('locale').addEventListener('change',e=>{db.locale=e.target.value;render()});
+$('platform').addEventListener('change',e=>{db.selectedPlatform=e.target.value;render()});
+$('showEditor').addEventListener('click',()=>{$('editor').classList.toggle('active');if($('editor').classList.contains('active'))$('editor').scrollIntoView({behavior:'smooth'})});
+$('hint').addEventListener('click',()=>editScore(db.languages[0].id,db.groups[0].id));
+$('applyJson').addEventListener('click',()=>{try{const d=JSON.parse($('jsonArea').value);if(!Array.isArray(d.languages)||!Array.isArray(d.groups)||!Array.isArray(d.platforms))throw Error(t('badShape'));for(let l of d.languages){if(!l.id||!l.name||!l.platformScores)throw Error(t('badLanguage'))}db=d;db.locale=$('locale').value;db.selectedPlatform=$('platform').value;$('jsonError').textContent='';render()}catch(err){$('jsonError').textContent=err.message}});
+$('resetData').addEventListener('click',()=>{db=structuredClone(original);render()});
+$('downloadJson').addEventListener('click',()=>{const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json;charset=utf-8'});let url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='language-data.json';a.click();URL.revokeObjectURL(url)});
+$('uploadJson').addEventListener('change',async e=>{let file=e.target.files[0];if(!file)return;try{const d=JSON.parse(await file.text());if(!Array.isArray(d.languages)||!Array.isArray(d.groups)||!Array.isArray(d.platforms))throw Error(t('badShape'));db=d;db.locale=$('locale').value;db.selectedPlatform=$('platform').value;render()}catch(err){alert(err.message)}e.target.value=''});
+$('print').addEventListener('click',()=>window.print());render();
+})();
+</script>
+</body></html>

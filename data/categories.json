@@ -1,0 +1,210 @@
+[
+  {
+    "id": "creative",
+    "title": {
+      "ru": "Генеративный ИИ",
+      "en": "Creative & Visual AI"
+    },
+    "subtitle": {
+      "ru": "Изображения, видео, GenAI",
+      "en": "Images, Video, GenAI"
+    },
+    "icon": "wand",
+    "iconColor": "#E7683D",
+    "technologies": [
+      {
+        "id": "images",
+        "name": "Image generation"
+      },
+      {
+        "id": "video",
+        "name": "Video generation"
+      },
+      {
+        "id": "multimodal",
+        "name": "Multimodal AI"
+      }
+    ]
+  },
+  {
+    "id": "companion",
+    "title": {
+      "ru": "ИИ-компаньон",
+      "en": "On-Device AI Companion"
+    },
+    "subtitle": {
+      "ru": "Ассистент, контекст, действия",
+      "en": "Assistant, Context, Actions"
+    },
+    "icon": "sparkles",
+    "iconColor": "#3281EA",
+    "technologies": [
+      {
+        "id": "dialogue",
+        "name": "Natural dialogue"
+      },
+      {
+        "id": "ondevice",
+        "name": "On-device AI"
+      },
+      {
+        "id": "actions",
+        "name": "Context & actions"
+      }
+    ]
+  },
+  {
+    "id": "search",
+    "title": {
+      "ru": "Поисковые технологии",
+      "en": "Search Technologies"
+    },
+    "subtitle": {
+      "ru": "Поиск, знания, ответы",
+      "en": "Search, Knowledge, Answers"
+    },
+    "icon": "search",
+    "iconColor": "#8942CD",
+    "technologies": [
+      {
+        "id": "search",
+        "name": "Language-aware search"
+      },
+      {
+        "id": "answers",
+        "name": "Answers"
+      }
+    ]
+  },
+  {
+    "id": "accessibility",
+    "title": {
+      "ru": "Функции доступности",
+      "en": "Accessibility"
+    },
+    "subtitle": {
+      "ru": "VoiceOver, озвучивание, Assistive Access",
+      "en": "VoiceOver, Spoken Content, Assistive Access"
+    },
+    "icon": "accessibility",
+    "iconColor": "#22A85D",
+    "technologies": [
+      {
+        "id": "voiceover",
+        "name": "VoiceOver"
+      },
+      {
+        "id": "captions",
+        "name": "Captions"
+      },
+      {
+        "id": "assistive",
+        "name": "Assistive features"
+      }
+    ]
+  },
+  {
+    "id": "speech",
+    "title": {
+      "ru": "Речь",
+      "en": "Speech"
+    },
+    "subtitle": {
+      "ru": "Диктовка, TTS, Siri",
+      "en": "Dictation, Text-to-Speech, Siri"
+    },
+    "icon": "speech",
+    "iconColor": "#E48234",
+    "technologies": [
+      {
+        "id": "asr",
+        "name": "Speech recognition"
+      },
+      {
+        "id": "tts",
+        "name": "Text-to-speech"
+      },
+      {
+        "id": "siri",
+        "name": "Siri"
+      }
+    ]
+  },
+  {
+    "id": "translation",
+    "title": {
+      "ru": "Перевод и локализация",
+      "en": "Translation & Localization"
+    },
+    "subtitle": {
+      "ru": "Перевод, система, приложения",
+      "en": "Translate, System, Apps"
+    },
+    "icon": "translation",
+    "iconColor": "#D83770",
+    "technologies": [
+      {
+        "id": "machine",
+        "name": "Machine translation"
+      },
+      {
+        "id": "system",
+        "name": "System localization"
+      },
+      {
+        "id": "apps",
+        "name": "App localization"
+      }
+    ]
+  },
+  {
+    "id": "keyboardTech",
+    "title": {
+      "ru": "Технологии клавиатуры",
+      "en": "Keyboard Technologies"
+    },
+    "subtitle": {
+      "ru": "Подсказки, автокоррекция, персонализация",
+      "en": "Predictions, Autocorrect, Personalization"
+    },
+    "icon": "keyboardTech",
+    "iconColor": "#338BDF",
+    "technologies": [
+      {
+        "id": "autocorrect",
+        "name": "Autocorrection"
+      },
+      {
+        "id": "predict",
+        "name": "Predictions"
+      },
+      {
+        "id": "swipe",
+        "name": "Swipe typing"
+      },
+      {
+        "id": "grammar",
+        "name": "Spelling & grammar"
+      }
+    ]
+  },
+  {
+    "id": "keyboard",
+    "title": {
+      "ru": "Клавиатура",
+      "en": "Keyboard"
+    },
+    "subtitle": {
+      "ru": "iPhone, iPad, macOS",
+      "en": "iPhone, iPad, macOS"
+    },
+    "icon": "keyboard",
+    "iconColor": "#8848D4",
+    "technologies": [
+      {
+        "id": "layout",
+        "name": "Native keyboard layout"
+      }
+    ]
+  }
+]

@@ -1,0 +1,152 @@
+{
+  "en": {
+    "platformScores": {
+      "apple": {
+        "creative": 99,
+        "companion": 99,
+        "search": 99,
+        "accessibility": 99,
+        "speech": 98,
+        "translation": 95,
+        "keyboardTech": 100,
+        "keyboard": 100
+      }
+    },
+    "technologyScores": {}
+  },
+  "ru": {
+    "platformScores": {
+      "apple": {
+        "creative": 0,
+        "companion": 45,
+        "search": 75,
+        "accessibility": 75,
+        "speech": 60,
+        "translation": 75,
+        "keyboardTech": 45,
+        "keyboard": 100
+      }
+    },
+    "technologyScores": {}
+  },
+  "sah": {
+    "platformScores": {
+      "apple": {
+        "creative": 0,
+        "companion": 0,
+        "search": 0,
+        "accessibility": 0,
+        "speech": 0,
+        "translation": 0,
+        "keyboardTech": 0,
+        "keyboard": 100
+      }
+    },
+    "technologyScores": {}
+  },
+  "tyv": {
+    "platformScores": {
+      "apple": {
+        "creative": 0,
+        "companion": 0,
+        "search": 0,
+        "accessibility": 0,
+        "speech": 0,
+        "translation": 0,
+        "keyboardTech": 0,
+        "keyboard": 100
+      }
+    },
+    "technologyScores": {}
+  },
+  "uz": {
+    "platformScores": {
+      "apple": {
+        "creative": 0,
+        "companion": 0,
+        "search": 0,
+        "accessibility": 0,
+        "speech": 0,
+        "translation": 50,
+        "keyboardTech": 0,
+        "keyboard": 100
+      }
+    },
+    "technologyScores": {}
+  },
+  "kk": {
+    "platformScores": {
+      "apple": {
+        "creative": 0,
+        "companion": 0,
+        "search": 0,
+        "accessibility": 0,
+        "speech": 0,
+        "translation": 50,
+        "keyboardTech": 0,
+        "keyboard": 100
+      }
+    },
+    "technologyScores": {}
+  },
+  "mn": {
+    "platformScores": {
+      "apple": {
+        "creative": 0,
+        "companion": 0,
+        "search": 0,
+        "accessibility": 0,
+        "speech": 0,
+        "translation": 50,
+        "keyboardTech": 0,
+        "keyboard": 100
+      }
+    },
+    "technologyScores": {}
+  },
+  "tt": {
+    "platformScores": {
+      "apple": {
+        "creative": 0,
+        "companion": 0,
+        "search": 0,
+        "accessibility": 0,
+        "speech": 0,
+        "translation": 0,
+        "keyboardTech": 0,
+        "keyboard": 0
+      }
+    },
+    "technologyScores": {}
+  },
+  "ba": {
+    "platformScores": {
+      "apple": {
+        "creative": 0,
+        "companion": 0,
+        "search": 0,
+        "accessibility": 0,
+        "speech": 0,
+        "translation": 0,
+        "keyboardTech": 0,
+        "keyboard": 0
+      }
+    },
+    "technologyScores": {}
+  },
+  "more": {
+    "platformScores": {
+      "apple": {
+        "creative": null,
+        "companion": null,
+        "search": null,
+        "accessibility": null,
+        "speech": null,
+        "translation": null,
+        "keyboardTech": null,
+        "keyboard": null
+      }
+    },
+    "technologyScores": {}
+  }
+}

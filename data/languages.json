@@ -1,0 +1,72 @@
+[
+  {
+    "id": "en",
+    "name": {
+      "ru": "Английский",
+      "en": "English"
+    }
+  },
+  {
+    "id": "ru",
+    "name": {
+      "ru": "Русский",
+      "en": "Russian"
+    }
+  },
+  {
+    "id": "sah",
+    "name": {
+      "ru": "Саха",
+      "en": "Sakha"
+    }
+  },
+  {
+    "id": "tyv",
+    "name": {
+      "ru": "Тувинский",
+      "en": "Tuvan"
+    }
+  },
+  {
+    "id": "uz",
+    "name": {
+      "ru": "Узбекский",
+      "en": "Uzbek"
+    }
+  },
+  {
+    "id": "kk",
+    "name": {
+      "ru": "Казахский",
+      "en": "Kazakh"
+    }
+  },
+  {
+    "id": "mn",
+    "name": {
+      "ru": "Монгольский",
+      "en": "Mongolian"
+    }
+  },
+  {
+    "id": "tt",
+    "name": {
+      "ru": "Татарский",
+      "en": "Tatar"
+    }
+  },
+  {
+    "id": "ba",
+    "name": {
+      "ru": "Башкирский",
+      "en": "Bashkir"
+    }
+  },
+  {
+    "id": "more",
+    "name": {
+      "ru": "+30 языков*",
+      "en": "+30 more*"
+    }
+  }
+]
