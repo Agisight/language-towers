@@ -5,6 +5,8 @@
 A language may have a technology on one platform but lack it on another. **Overall / Cross-platform is an automatic OR aggregation**, not a sixth vendor's manually invented scores.
 
 - [Interactive towers](index.html) — editable SVG liquid-fill matrix; English default; Russian available.
+- [Create Your Language](contribute.html) — submit one language/provider assessment with evidence and a live tower preview.
+- [Contribution guidelines](CONTRIBUTING.md) — fork → JSON → Pull Request → review.
 - [About & methodology](info.html) — bilingual explanation with examples of the OR calculation.
 - [Canonical dataset](data/language-data.json) — assembled from the editable JSON files described above.
 
@@ -139,3 +141,11 @@ the print dialog's **Fit to page / Scale** setting, or keep A3 and export to PDF
 
 The language/platform controls use native accessible select elements with custom
 chevron styling; their options and data logic are unchanged.
+
+## Community contributions
+
+Create your assessment in [Create Your Language](contribute.html), download a `<language>-<provider>.json`, upload it to the `contributions/` directory of your GitHub fork and open a Pull Request.
+
+GitHub Actions runs `python3 scripts/validate_contributions.py` to validate the schema and source-link format. Structural validation does **not** verify factual scores. A maintainer reviews evidence and manually incorporates approved assessments into `data/scores.json`.
+
+The editor and the main interface currently use distinct tank renderers; do not assume they are visually pixel-identical.
