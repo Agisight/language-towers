@@ -30,3 +30,18 @@ Each contribution concerns **one language + one provider**. A score of 0 means a
 ## По-русски
 
 Откройте `contribute.html`, заполните один язык и одну платформу, при необходимости добавьте несколько комментариев со ссылками для каждой технологии, скачайте JSON. Создайте **Fork**, загрузите JSON в папку `contributions/` своего форка, сделайте коммит в новую ветку и откройте **Pull Request** в `Agisight/language-towers:main`. Затем дождитесь проверки, отвечайте на комментарии и исправляйте данные при необходимости.
+
+## Canonical data after review / Данные после проверки
+
+The `contributions/` directory is for **proposals only**. Accepted provider data
+is maintained in `lang/<language-code>/<provider>.json` alongside `meta.json`.
+Maintainers can apply a reviewed proposal using:
+
+```bash
+python3 scripts/apply_contribution.py contributions/tyv-apple.json
+python3 scripts/embed-data.py
+python3 scripts/validate_contributions.py
+```
+
+Review the diff before merging; generated data files must be committed too.
+`data/scores.json` and `data/languages.json` are generated compatibility outputs.

@@ -3,7 +3,10 @@ on:
   pull_request:
     paths:
       - 'contributions/**'
+      - 'lang/**'
       - 'scripts/validate_contributions.py'
+      - 'scripts/embed-data.py'
+      - 'scripts/apply_contribution.py'
       - 'data/categories.json'
       - 'data/config.json'
       - '.github/workflows/validate-contributions.yml'
@@ -11,7 +14,10 @@ on:
     branches: [main]
     paths:
       - 'contributions/**'
+      - 'lang/**'
       - 'scripts/validate_contributions.py'
+      - 'scripts/embed-data.py'
+      - 'scripts/apply_contribution.py'
       - 'data/categories.json'
       - 'data/config.json'
       - '.github/workflows/validate-contributions.yml'
@@ -27,3 +33,9 @@ jobs:
           python-version: '3.12'
       - name: Validate proposed JSON files
         run: python3 scripts/validate_contributions.py
+      - name: Build canonical language data
+        run: python3 scripts/embed-data.py
+      - name: Test aggregation
+        run: node scripts/test_aggregation.js
+      - name: Check generated files are committed
+        run: git diff --exit-code -- index.html data/language-data.json data/languages.json data/scores.json

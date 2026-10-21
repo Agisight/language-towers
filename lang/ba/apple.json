@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "provider": "apple",
+  "platformScores": {
+    "creative": 0,
+    "companion": 0,
+    "search": 0,
+    "accessibility": 0,
+    "speech": 0,
+    "translation": 0,
+    "keyboardTech": 0,
+    "keyboard": 0
+  },
+  "technologyScores": {},
+  "evidence": {}
+}

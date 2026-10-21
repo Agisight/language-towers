@@ -10,19 +10,40 @@ A language may have a technology on one platform but lack it on another. **Overa
 - [About & methodology](info.html) — bilingual explanation with examples of the OR calculation.
 - [Canonical dataset](data/language-data.json) — assembled from the editable JSON files described above.
 
+## Language-specific canonical data (v4)
+
+**Edit `lang/<BCP47>/<provider>.json`**, not `data/scores.json`.
+Each language has `lang/<code>/meta.json` (id, localized name, optional order)
+plus independent `apple.json`, `google.json`, `android.json`, `microsoft.json`,
+`yandex.json` or `community.json` files as applicable. Providers without assessed
+values do not need files. Unassessed `null` differs from `0`.
+
+Run `python3 scripts/embed-data.py` after changing a language. The script generates
+`data/languages.json`, `data/scores.json`, `data/language-data.json` and embeds the
+compiled dataset into `index.html`. These **data/*.json outputs are generated**,
+not separate manually-maintained sources. All original legacy `platformScores`
+(category estimates) were preserved per-provider and remain a fallback until
+individual `technologyScores` are available.
+
+To propose an update, use [Create Your Language](contribute.html), download the
+JSON and open a PR adding it to `contributions/`. A maintainer reviews evidence,
+then runs `python3 scripts/apply_contribution.py contributions/tyv-apple.json`
+(substitute filename), checks the git diff, rebuilds, and merges. The helper
+preserves unrelated technologies and legacy category estimates.
+
 ## Editing data independently (recommended)
 
-Change JSON files in `data/` without editing HTML or JavaScript:
+Change canonical JSON files under `lang/` without editing HTML or JavaScript. The table below describes configuration and **generated compatibility outputs**:
 
 | File | Purpose |
 | --- | --- |
-| `data/languages.json` | Language IDs and translated display names; adding a language adds a column. |
+| `data/languages.json` | Generated from `lang/*/meta.json`; adding a canonical language adds a column. |
 | `data/categories.json` | Category order, descriptions, icons and nested technologies. |
-| `data/scores.json` | Scores per language, platform and technology; `null` means not evaluated. |
+| `data/scores.json` | Generated from `lang/*/<provider>.json`; `null` means not evaluated. |
 | `data/config.json` | Site title, platform selection and bilingual metadata. |
 | `data/language-data.json` | **Generated combined file** for compatibility; don't edit directly. |
 
-After editing, run `python3 scripts/embed-data.py` (or `npm run build`). This rebuilds both the combined JSON and the standalone HTML; it requires only Python 3. You can then open `index.html` without a local server, and GitHub Pages can serve the exact same file.
+After editing `lang/`, run `python3 scripts/embed-data.py` (or `npm run build`). This rebuilds both the combined JSON and the standalone HTML; it requires only Python 3. You can then open `index.html` without a local server, and GitHub Pages can serve the exact same file.
 
 **Editing in the browser is for experimentation only:** use Download JSON to export edits, then transfer the resulting changes into the appropriate source JSON files.
 

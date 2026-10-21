@@ -72,7 +72,61 @@ def check(path, technology_ids, providers):
                     errors.append(f'{tid}[{index}]: invalid source URL: {url}')
     if isinstance(lang_id, str) and isinstance(provider, str) and path.name != f'{lang_id.lower()}-{provider}.json':
         errors.append(f'filename must be {lang_id.lower()}-{provider}.json')
-    return [f'{path.relative_to(ROOT)}: {msg}' for msg in errors]
+    return [f'{path}: {msg}' for msg in errors]
+
+
+def check_canonical_language_dirs(technology_ids, providers, category_ids):
+    errors = []
+    for folder in sorted((ROOT / 'lang').iterdir()):
+        if not folder.is_dir():
+            continue
+        meta = folder / 'meta.json'
+        if not meta.exists():
+            errors.append(f'{folder}: missing meta.json')
+            continue
+        try:
+            md = json.loads(meta.read_text(encoding='utf-8'))
+            if md.get('id') != folder.name or not isinstance(md.get('name'), dict) or not md['name'].get('en'):
+                errors.append(f'{meta}: invalid id or name')
+        except (OSError, ValueError) as exc:
+            errors.append(f'{meta}: {exc}')
+        for path in sorted(folder.glob('*.json')):
+            if path.name == 'meta.json':
+                continue
+            if path.stem not in providers:
+                errors.append(f'{path}: unknown provider filename')
+                continue
+            try:
+                payload = json.loads(path.read_text(encoding='utf-8'))
+            except (OSError, ValueError) as exc:
+                errors.append(f'{path}: {exc}')
+                continue
+            if payload.get('provider') != path.stem:
+                errors.append(f'{path}: provider mismatch')
+            for field, known in [('platformScores', category_ids), ('technologyScores', technology_ids)]:
+                values = payload.get(field, {})
+                if not isinstance(values, dict):
+                    errors.append(f'{path}: {field} must be object')
+                    continue
+                for key, value in values.items():
+                    if key not in known:
+                        errors.append(f'{path}: unknown {field} key {key}')
+                    if value is not None and (isinstance(value, bool) or not isinstance(value, (int,float)) or not 0 <= value <= 100):
+                        errors.append(f'{path}: invalid score {key}')
+            evidence = payload.get('evidence', {})
+            if not isinstance(evidence, dict):
+                errors.append(f'{path}: evidence must be an object')
+            else:
+                for key, values in evidence.items():
+                    if key not in technology_ids:
+                        errors.append(f'{path}: unknown evidence key {key}')
+                    if not isinstance(values, list):
+                        errors.append(f'{path}: evidence[{key}] must be a list')
+                        continue
+                    for item in values:
+                        if not isinstance(item, dict) or not isinstance(item.get('comment'), str) or not isinstance(item.get('url'), str):
+                            errors.append(f'{path}: invalid evidence record for {key}')
+    return errors
 
 
 def main():
@@ -80,16 +134,17 @@ def main():
     cfg = json.loads(PLATFORMS.read_text(encoding='utf-8'))
     technology_ids = {tech['id'] for group in groups for tech in group['technologies']}
     providers = {platform['id'] for platform in cfg['platforms'] if platform['id'] != 'overall'}
+    category_ids = {group['id'] for group in groups}
+    canonical_errors = check_canonical_language_dirs(technology_ids, providers, category_ids)
     files = sorted(CONTRIB.glob('*.json'))
     if not files:
-        print('PASS: No contribution JSON files yet.')
-        return 0
-    errors = [problem for path in files for problem in check(path, technology_ids, providers)]
+        print('No contribution JSON files yet; checking canonical lang/ files.')
+    errors = canonical_errors + [problem for path in files for problem in check(path, technology_ids, providers)]
     if errors:
         for error in errors:
             print('ERROR:', error, file=sys.stderr)
         return 1
-    print(f'PASS: Validated {len(files)} contribution JSON file(s).')
+    print(f'PASS: Validated {len(files)} contribution JSON file(s) and canonical lang/ tree.')
     return 0
 
 
