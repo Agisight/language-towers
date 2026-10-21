@@ -123,3 +123,19 @@ Original application code: **MIT** (see `LICENSE`). Language corpora, third-part
 Language Towers — независимый проект оценки цифровой поддержки языков. Режим **«Все платформы»** автоматически собирает лучший результат по каждой подтехнологии среди Apple, Android, Google, Яндекса, Microsoft и независимых решений (логическое **ИЛИ / максимум**). Затем подсчитывается среднее известных подтехнологий категории. Если пока есть только старые оценки целых категорий, временно берётся максимум известных оценок категории.
 
 **`0` = подтверждённое отсутствие поддержки, `null` = не оценено.** Неизвестное никогда не превращаем в ноль; неполные оценки помечаются. Выберите конкретную платформу для правки данных, а общий режим остаётся вычисляемым и недоступным для ручного редактирования. Откройте `index.html` и `info.html` локально или разместите проект на GitHub Pages.
+
+
+## Interface controls
+
+The toolbar uses native accessible `<select>` elements with consistent SVG chevrons, explicit labels, and visible keyboard-focus styles. This affects appearance only; platform selection, localization, and data scores are unchanged.
+
+## Print / PDF layout
+
+Use **Print / PDF** in the top toolbar. The HTML automatically fits the entire
+language matrix to a single **A3 landscape** page, including the last column.
+Enable **Background graphics** in Chrome/Safari print settings so colored liquid
+and glass fills are included. To output A4 instead, select A4 landscape and use
+the print dialog's **Fit to page / Scale** setting, or keep A3 and export to PDF.
+
+The language/platform controls use native accessible select elements with custom
+chevron styling; their options and data logic are unchanged.

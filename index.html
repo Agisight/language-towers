@@ -18,14 +18,48 @@
 .bottom-note{font-size:11px;color:#717c8e;margin-top:28px;max-width:calc(var(--left) + var(--n) * (var(--col) + var(--gap)) );line-height:1.6}.bottom-note em{font-style:normal;color:#2f4259}
 .editor{margin:10px auto 24px;max-width:1180px;padding:22px;border-radius:14px;background:white;border:1px solid var(--line);display:none}.editor.active{display:block}.editor h2{font-size:18px;margin:0 0 10px}.editor p{font-size:13px;color:var(--muted);line-height:1.5}.editor textarea{font:12px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;width:100%;height:360px;border-radius:9px;border:1px solid #bfcbd9;padding:12px;resize:vertical}.edit-actions{display:flex;gap:9px;margin-top:12px}.edit-error{color:#b91c1c;font-size:12px;margin:7px 0;min-height:14px}
 .dialog{border:1px solid #dee4eb;border-radius:18px;padding:22px;width:min(420px,calc(100vw - 36px));box-shadow:0 24px 90px #14203238}.dialog::backdrop{background:#151a2460}.dialog h2{margin:0 0 17px;font-size:19px}.dialog label{display:block;font-size:12px;color:#536073;margin-bottom:8px}.dialog input[type=number]{padding:9px;border:1px solid #c9d2de;border-radius:8px;width:110px;font:inherit}.dialog input[type=range]{width:100%;accent-color:#248866}.dialog .ed-row{display:flex;align-items:center;gap:12px;margin:12px 0 21px}.dialog .close{float:right;border:0;background:none;font-size:23px;cursor:pointer}.dialog .edit-actions{justify-content:flex-end}.dialog button{cursor:pointer}
-@media print{body{background:white}.toolbar,.editor{display:none!important}.stage-wrap{overflow:visible;padding:0}.stage{border:0;box-shadow:none;border-radius:0;padding:10px;transform-origin:top left}.tank{break-inside:avoid}@page{size:landscape;margin:8mm}}
+
+/* Refined Apple-like control group; stable chevrons across browsers */
+.toolbar{gap:10px;row-gap:10px;padding-top:12px;padding-bottom:12px}
+.toolbar .toolbar-field{display:flex;align-items:center;gap:8px;min-width:0;color:#535e6d;font-size:12px;font-weight:600;white-space:nowrap}
+.toolbar .control-select{position:relative;display:inline-flex;align-items:center;min-width:0}
+.toolbar .control-select select{
+  appearance:none;-webkit-appearance:none;-moz-appearance:none;
+  height:38px;min-height:38px;margin:0;outline:none;
+  background:linear-gradient(180deg,#fff,#fbfcfe);border:1px solid #dce1e7;
+  border-radius:11px;box-shadow:0 1px 2px #16203308;
+  color:#182230;font:500 13px/1.2 -apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',Arial,sans-serif;
+  padding:0 36px 0 14px;cursor:pointer;letter-spacing:-.05px;
+  transition:border-color .15s ease,box-shadow .15s ease,background .15s ease;
+}
+.toolbar .control-select:hover select{border-color:#b9c5d3;background:#fff}
+.toolbar .control-select select:focus-visible{border-color:#4b91db;box-shadow:0 0 0 3px #2786e51f}
+.toolbar .control-select svg{position:absolute;pointer-events:none;right:13px;top:50%;transform:translateY(-50%);height:13px;width:13px;color:#657386;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.toolbar .locale-select select{width:112px}
+.toolbar .provider-select select{width:246px;min-width:0}
+.toolbar .toolbar button,.toolbar .file-btn,.toolbar .nav-link{min-height:38px;display:inline-flex;align-items:center;justify-content:center;border-radius:11px;padding:0 12px}
+.toolbar .primary{font-weight:600}
+@media(max-width:760px){.toolbar{padding:12px 14px}.toolbar h1{width:100%;margin-bottom:0}.toolbar .toolbar-field{gap:6px}.toolbar .provider-select select{width:200px}}
+
+/* Print / PDF: render the entire matrix on one landscape page without clipping. */
+@page{size:A3 landscape;margin:10mm}
+@media print{
+  html,body{background:#fff!important;margin:0!important;padding:0!important;overflow:visible!important}
+  .toolbar,.editor,.dialog{display:none!important}
+  .stage-wrap{width:100%!important;max-width:none!important;overflow:visible!important;padding:0!important;margin:0!important}
+  .stage{box-sizing:border-box;width:max-content!important;min-width:0!important;max-width:none!important;margin:0!important;padding:4px!important;border:0!important;border-radius:0!important;box-shadow:none!important;zoom:var(--print-zoom,1);print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  .matrix,.feature,.tank{break-inside:avoid}
+  .tank svg{overflow:visible}
+  .bottom-note{margin-top:14px}
+  .heading{margin-bottom:26px}
+}
 </style>
 </head>
 <body>
 <div class="toolbar">
   <h1>Language Towers</h1>
-  <label style="font-size:13px"><span data-i18n="interface">Interface</span> <select id="locale"><option value="en">English</option><option value="ru">Русский</option></select></label>
-  <label class="provider-pick"><span data-i18n="platform">Platform</span> <select id="platform"></select></label>
+  <label class="toolbar-field"><span data-i18n="interface">Interface</span><span class="control-select locale-select"><select id="locale" aria-label="Interface language"><option value="en">English</option><option value="ru">Русский</option></select><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 7 5 5 5-5"/></svg></span></label>
+  <label class="toolbar-field provider-pick"><span data-i18n="platform">Platform</span><span class="control-select provider-select"><select id="platform" aria-label="Platform"></select><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 7 5 5 5-5"/></svg></span></label>
   <a class="nav-link" href="info.html" data-i18n="about">About / Methodology</a>
   <button id="showEditor" data-i18n="editJson">Edit JSON</button>
   <button id="downloadJson" data-i18n="download">Download JSON</button>
@@ -669,7 +703,21 @@ $('applyJson').addEventListener('click',()=>{try{const d=JSON.parse($('jsonArea'
 $('resetData').addEventListener('click',()=>{db=structuredClone(original);render()});
 $('downloadJson').addEventListener('click',()=>{const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json;charset=utf-8'});let url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='language-data.json';a.click();URL.revokeObjectURL(url)});
 $('uploadJson').addEventListener('change',async e=>{let file=e.target.files[0];if(!file)return;try{const d=JSON.parse(await file.text());if(!Array.isArray(d.languages)||!Array.isArray(d.groups)||!Array.isArray(d.platforms))throw Error(t('badShape'));db=d;db.locale=$('locale').value;db.selectedPlatform=$('platform').value;render()}catch(err){alert(err.message)}e.target.value=''});
-$('print').addEventListener('click',()=>window.print());render();
+// Fit both width and height onto a single landscape A3 page. This also
+// prevents right-side language columns being truncated by print margins.
+function preparePrint(){
+ const stage=$('stage');
+ stage.style.removeProperty('--print-zoom');
+ const sheetWidth=(420-20)*96/25.4;  // A3 landscape, 10 mm margins each side
+ const sheetHeight=(297-20)*96/25.4;
+ const width=stage.scrollWidth+10;
+ const height=stage.scrollHeight+10;
+ const factor=Math.min(1,sheetWidth/width,sheetHeight/height)*0.975;
+ stage.style.setProperty('--print-zoom',String(Math.max(0.25,factor)));
+}
+window.addEventListener('beforeprint',preparePrint);
+window.addEventListener('afterprint',()=>{$('stage').style.removeProperty('--print-zoom')});
+$('print').addEventListener('click',()=>{preparePrint();window.print()});render();
 })();
 </script>
 </body></html>
