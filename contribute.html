@@ -84,6 +84,35 @@ button.add{border:1px dashed #c8d5e4;color:#386eab;background:#f8fbff;margin-top
 .preview .tower-label span{display:block;color:#7b8a9c;font-size:11px;font-weight:500;margin-top:4px}
 @media(max-width:980px){.preview .tower{max-width:370px!important;grid-template-columns:96px minmax(0,1fr)}.preview .tower-row .floor{width:96px!important;height:59px!important}}
 @media(max-width:430px){.preview .tower{grid-template-columns:82px minmax(0,1fr)!important}.preview .tower-row .floor{width:82px!important;height:55px!important}}
+
+/* LT_PREVIEW_SPACING_PATCH_START */
+/* Air between the eight glass floors: preview only, no changes to scoring or JSON. */
+.preview .tower {
+  row-gap: 12px !important;
+  column-gap: 19px !important;
+  max-width: 330px !important;
+  margin: 23px auto 23px !important;
+}
+.preview .tower-row .floor {
+  height: 68px !important;
+  border-radius: 12px !important;
+  border-width: 2px !important;
+}
+.preview .tower-row:not(:first-child) .floor { border-top-width: 2px !important; }
+.preview .tower-row:first-child .floor,
+.preview .tower-row:last-child .floor { border-radius: 12px !important; }
+.preview .tower-row .tower-label { line-height: 1.38; padding: 4px 0; }
+.preview .tower-row .tower-label span { margin-top: 6px; }
+.preview .hint { padding: 11px 13px; margin: 20px 0 12px; }
+@media (max-width: 980px) {
+  .preview .tower { row-gap: 12px !important; }
+  .preview .tower-row .floor { height: 70px !important; }
+}
+@media (max-width: 430px) {
+  .preview .tower { column-gap: 13px !important; row-gap: 11px !important; }
+  .preview .tower-row .floor { height: 64px !important; }
+}
+/* LT_PREVIEW_SPACING_PATCH_END */
 </style>
 <header><strong>Language Towers</strong><nav><a href="index.html" data-i="towers">Towers</a><a href="info.html" data-i="method">Methodology</a><a href="https://github.com/Agisight/language-towers" target="_blank" rel="noopener">GitHub ↗</a></nav><select class="locale-switch" id="locale"><option value="en">English</option><option value="ru">Русский</option></select></header>
 <main class="container"><div class="intro"><h1 data-i="heading">Create Your Language</h1><p data-i="intro">Build one language contribution: score each technology, add comments and supporting links, preview the tower, download JSON, and submit a Pull Request for review. Unknown is not zero.</p></div>
